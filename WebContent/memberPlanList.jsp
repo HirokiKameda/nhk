@@ -5,8 +5,6 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +15,7 @@
 
 
 <table border="1">
-<tr><td>プラン名</td><td>内容</td><td>金額</td><td>空き部屋数</td></tr>
+<tr><td>プラン名</td><td>内容</td><td>金額</td><td>部屋数</td></tr>
 
 <%-- JSPのコメント
 <c:forEach items="${emp}" var="emp">
@@ -26,7 +24,12 @@
 
 --%>
 
+
 </table>
+
+
+<a href="/nhk/innList.jsp">宿一覧に戻る</a><br>
+<a href="/nhk/adminMenu.jsp">メニューへに戻る</a><br>
 
 
 

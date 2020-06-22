@@ -34,8 +34,19 @@ public class PlanShowServlet extends HttpServlet {
 		//PlanDAO dao = new PlanDAO();
 		//List<PlanBean> list = dao.findAll();
 		//request.setAttribute("plan", list);
-		RequestDispatcher rd = request.getRequestDispatcher("/Plan/memberPlanList.jsp");
-		rd.forward(request, response);
+
+		request.setCharacterEncoding("UTF-8");
+		String action = request.getParameter("action");
+
+		if (action.equals("admin")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPlantList.jsp");
+			dispatcher.forward(request, response);
+		} else if (action.equals("member")) {
+			//HotelDAO dao = new HotelDAO();
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/memberPlantList.jsp");
+			dispatcher.forward(request, response);
+		}
 
 		/*try {
 			//EmpDAO dao = new EmpDAO();

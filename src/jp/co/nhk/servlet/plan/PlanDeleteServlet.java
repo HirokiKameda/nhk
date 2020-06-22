@@ -2,6 +2,7 @@ package jp.co.nhk.servlet.plan;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,22 @@ public class PlanDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		request.setCharacterEncoding("UTF-8");
+		// パラメータの解析
+		String action = request.getParameter("action");
+
+		if (action == null || action.length() == 0) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planDeleteConfirm.jsp");
+			dispatcher.forward(request, response);
+		} else if (action.equals("confirm")) {
+			//HotelDAO dao = new HotelDAO();
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planDeleteComplete.jsp");
+			dispatcher.forward(request, response);
+		}
+
 	}
 
 	/**

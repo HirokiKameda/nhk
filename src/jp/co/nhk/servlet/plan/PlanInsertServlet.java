@@ -38,9 +38,41 @@ public class PlanInsertServlet extends HttpServlet {
 		//request.setAttribute("plan", list);
 		//request.setAttribute("message", "一件追加しました。");
 
-		//確認サーブレットもつくるか、insertServletで確認処理もできるか
-		RequestDispatcher rd = request.getRequestDispatcher("/Plan/planInsertKakunin.jsp");
-		rd.forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String action = request.getParameter("action");
+
+		if (action.equals("input")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsertConfirm.jsp");
+			dispatcher.forward(request, response);
+		} else if (action.equals("confirm")) {
+			//HotelDAO dao = new HotelDAO();
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsertComplete.jsp");
+			dispatcher.forward(request, response);
+		}
+
+		//メモ
+		/*
+		if (action.equals("input")) {
+			PlanBean pb = new PlanBean();
+			String detail = request.getParameter("detail");
+			int price = Integer.parseInt(request.getParameter("price"));
+			int maxrooms = Integer.parseInt(request.getParameter("maxrooms"));
+		
+			// PlanBeanに変更内容を入れてJSPへフォワードする
+			request.setAttribute("plan", pb);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsertConfirm.jsp");
+			dispatcher.forward(request, response);
+		
+		} else if (action.equals("confirm")) {
+			request.setAttribute("emps", list);
+			gotoPage(request, response, "/showItem.jsp");
+		
+		} else {
+			request.setAttribute("message", "正しく操作してください");
+			gotoPage(request, response, "/errInternal.jsp");
+		}
+		*/
 
 		/*
 		try {
