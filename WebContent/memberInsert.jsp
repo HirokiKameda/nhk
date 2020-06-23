@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-変更内容
+登録内容
 
-<form action="/nhk/MemberUpdateServlet" method="post">
+<form action="/nhk/MemberInsertServlet" method="post">
 名前:<input type="text" name="name"><br>
 生年月日:<input type="text" name="birthday"><br>
 電話番号:<input type="text" name="tel"><br>

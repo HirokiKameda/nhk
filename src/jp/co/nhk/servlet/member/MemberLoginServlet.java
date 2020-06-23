@@ -41,7 +41,7 @@ public class MemberLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String adminUSERNAME = "admin";
 		String adminPASSWORD = "himitu";
-		String USERNAME = "member";
+		String EMAIL = "member";
 		String PASSWORD = "himitu";
 
 		String usertype = "nobody";
@@ -61,7 +61,7 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("isLogin", "0");
 			RequestDispatcher rd = request.getRequestDispatcher("adminMenu.jsp");
 			rd.forward(request, response);
-		} else if ((USERNAME.equals(request.getParameter("username")))
+		} else if ((EMAIL.equals(request.getParameter("email")))
 				&& (PASSWORD.equals(request.getParameter("password")))
 				&& (usertype.equals("member"))) {
 			request.setAttribute("isLogin", "0");
