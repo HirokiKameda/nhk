@@ -169,7 +169,7 @@ public class HotelDAO {
 		}
 	}
 
-	public void insert(String name, String intro, String address, Date checkin, Date checkout, String tel)
+	public void insert(String name, String intro, String address, Date date, Date date2, String tel)
 			throws DAOException {
 
 		PreparedStatement st1 = null;
@@ -194,8 +194,8 @@ public class HotelDAO {
 			st1.setString(2, name);
 			st1.setString(3, intro);
 			st1.setString(4, address);
-			st1.setDate(5, checkin);
-			st1.setDate(6, checkout);
+			st1.setDate(5, date);
+			st1.setDate(6, date2);
 			st1.setString(7, tel);
 
 			int rows = st1.executeUpdate();
