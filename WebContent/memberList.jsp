@@ -9,14 +9,14 @@
 <body>
 <h1>会員一覧</h1>
 <form action="/nhk/MemberUpdateServlet" method="post">
-<input type="hidden" name="action" value="confirm">
+<input type="hidden" name="action" value="nyuryoku">
 <input type="submit" value="変更">
 </form>
 <form action="/nhk/MemberDeleteServlet" method="post">
 <input type="hidden" name="action" value="confirm">
 <input type="submit" value="退会">
 </form>
-<a href="/nhk/memberMenu">メニューに戻る</a>
+<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
 
 </body>
 </html>

@@ -8,7 +8,6 @@
 </head>
 <body>
 更新しました
-<a href="/nhk/member.menu">メニューに戻る</a>
-
+<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
 </body>
 </html>
