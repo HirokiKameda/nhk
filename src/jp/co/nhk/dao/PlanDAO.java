@@ -169,7 +169,7 @@ public class PlanDAO {
 		}
 	}
 
-	public void insert(int id, int hotelId, String name, String detail, int price, int maxrooms)
+	public void insert(int hotelId, String name, String detail, int price, int maxrooms)
 			throws DAOException {
 
 		PreparedStatement st1 = null;
@@ -179,7 +179,7 @@ public class PlanDAO {
 
 		try (Connection con = getConnection();) {
 			//SQL文の作成
-			String sql1 = "insert into plan(id,hotel_id,name,detail,price,maxrooms) values(?,?,?,?,?,?,?)";
+			String sql1 = "insert into plan(id,hotel_id,name,detail,price,maxrooms) values(?,?,?,?,?,?)";
 
 			//現在の最終行codeを持ってくる
 			String sql2 = "select * from plan order by id desc";
@@ -226,7 +226,7 @@ public class PlanDAO {
 	public void deleteData(int id) throws DAOException {
 
 		//SQL文の作成
-		String sql = "delete from emp where code = ?";
+		String sql = "delete from plan where id = ?";
 
 		try (Connection con = getConnection();
 				PreparedStatement st = con.prepareStatement(sql);) {

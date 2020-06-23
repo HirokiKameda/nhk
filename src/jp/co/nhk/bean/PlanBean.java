@@ -47,11 +47,11 @@ public class PlanBean implements Serializable {
 	}
 
 	public String getDetail() {
-		return name;
+		return detail;
 	}
 
-	public void setDetail(String name) {
-		this.name = name;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	public int getPrice() {
