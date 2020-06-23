@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +10,21 @@
 </head>
 <body>
 
-<a href="/nhk/PlanShowServlet">プランを見る</a>
-<a href="/nhk/HotelUpdateServlet">宿情報変更</a>
-<a href="/nhk/HotelDeleteServlet">宿削除</a>
+<c:forEach items="${inns}" var="list">
 
+
+ID: ${list.id}<br>
+名前：${list.name}<br>
+紹介：${list.intro}<br>
+住所：${list.address}<br>
+ チェックイン時間：${list.checkin} チェックアウト時間：${list.checkout} 電話番号：${list.tel}
+<br>
+
+<a href="/nhk/PlanShowServlet">プランを見る</a>
+<a href="/nhk/HotelUpdateServlet?nowid=${list.id}">宿情報変更</a>
+<a href="/nhk/HotelDeleteServlet?nowid=${list.id}">宿削除</a>
+<br>
+</c:forEach>
 <br>
 <a href="/nhk/adminMenu.jsp">メニューへに戻る</a>
 </body>

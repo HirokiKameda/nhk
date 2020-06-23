@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.nhk.bean.HotelBean;
+import jp.co.nhk.dao.DAOException;
+import jp.co.nhk.dao.HotelDAO;
+
 /**
  * Servlet implementation class HotelUpadateServlet
  */
@@ -34,17 +38,37 @@ public class HotelUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		// パラメータの解析
 		String action = request.getParameter("action");
+		int id = Integer.parseInt(request.getParameter("nowid"));
 
+		request.setAttribute("nowid", id);
 		if (action == null || action.length() == 0) {
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/innUpdate.jsp");
 			dispatcher.forward(request, response);
 		} else if (action.equals("input")) {
-			//HotelDAO dao = new HotelDAO(); findby
 
+			HotelBean bean = new HotelBean(id, request.getParameter("name"), request.getParameter("intro"),
+					request.getParameter("address"),
+					request.getParameter("checkin"), request.getParameter("checkout"), request.getParameter("tel"));
+			request.setAttribute("bean", bean);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/innUpdateConfirm.jsp");
 			dispatcher.forward(request, response);
 		} else if (action.equals("confirm")) {
-			//HotelDAO dao = new HotelDAO();
+			HotelDAO dao = new HotelDAO();
+			String name = request.getParameter("name");
+			String intro = request.getParameter("intro");
+			String address = request.getParameter("address");
+			String checkin = request.getParameter("checkin");
+			String checkout = request.getParameter("checkout");
+			String tel = request.getParameter("tel");
+
+			//System.out.println(name + intro + address + checkin + checkout + tel);
+			try {
+				dao.update(id, name, intro, address, checkin, checkout, tel);
+			} catch (DAOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/innUpdateComplete.jsp");
 			dispatcher.forward(request, response);
