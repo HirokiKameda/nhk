@@ -10,9 +10,9 @@ public class PlanBean implements Serializable {
 	private int price;
 	private int maxrooms;
 
-	public PlanBean(int id, int hotel_id, String name, String detail, int price, int maxrooms) {
+	public PlanBean(int id, int hotelId, String name, String detail, int price, int maxrooms) {
 		this.id = id;
-		this.hotel_id = hotel_id;
+		this.hotel_id = hotelId;
 		this.name = name;
 		this.detail = detail;
 		this.price = price;

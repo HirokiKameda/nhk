@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.nhk.bean.PlanBean;
+import jp.co.nhk.dao.DAOException;
+import jp.co.nhk.dao.PlanDAO;
+
 /**
  * Servlet implementation class PlanDeleteServlet
  */
@@ -31,20 +35,7 @@ public class PlanDeleteServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		request.setCharacterEncoding("UTF-8");
-		// パラメータの解析
-		String action = request.getParameter("action");
-
-		if (action == null || action.length() == 0) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/planDeleteConfirm.jsp");
-			dispatcher.forward(request, response);
-		} else if (action.equals("confirm")) {
-			//HotelDAO dao = new HotelDAO();
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/planDeleteComplete.jsp");
-			dispatcher.forward(request, response);
-		}
+		doPost(request, response);
 
 	}
 
@@ -54,7 +45,40 @@ public class PlanDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+
+		request.setCharacterEncoding("UTF-8");
+		PlanDAO dao = new PlanDAO();
+
+		///*
+		int id = Integer.parseInt(request.getParameter("nowid"));
+		request.setAttribute("nowid", id);
+		//*/
+
+		// パラメータの解析
+		String action = request.getParameter("action");
+
+		if (action == null || action.length() == 0) {
+			try {
+				PlanBean bean = dao.findBy(id);
+				String name = bean.getName();
+				request.setAttribute("name", name);
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planDeleteConfirm.jsp");
+			dispatcher.forward(request, response);
+		} else if (action.equals("confirm")) {
+			try {
+				dao.delete(id);
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planDeleteComplete.jsp");
+			dispatcher.forward(request, response);
+		}
+
 	}
 
 }

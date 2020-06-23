@@ -89,7 +89,7 @@ public class PlanDAO {
 		}
 	}
 
-	public void updateData(int id, int hotelId, String name, String detail, int price, int maxrooms)
+	public void update(int id, int hotelId, String name, String detail, int price, int maxrooms)
 			throws DAOException {
 
 		String sql = "SELECT * FROM plan Where id=?";
@@ -223,7 +223,7 @@ public class PlanDAO {
 		}
 	}
 
-	public void deleteData(int id) throws DAOException {
+	public void delete(int id) throws DAOException {
 
 		//SQL文の作成
 		String sql = "delete from plan where id = ?";

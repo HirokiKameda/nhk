@@ -78,7 +78,7 @@ class PlanDAOTest extends PlanDAO {
 		try {
 	
 			//データベース1行目を変更
-			planDAO.updateData(1, 1, "焼肉プラン", "お肉たくさん", 10000, 10);
+			planDAO.update(1, 1, "焼肉プラン", "お肉たくさん", 10000, 10);
 			planBean = planDAO.findBy(1);
 	
 			//変更した1行目をチェック
@@ -102,14 +102,14 @@ class PlanDAOTest extends PlanDAO {
 	/*
 	@Test
 	void test3() {
-	//updateDataメソッドのテスト
+	//updateメソッドのテスト
 		//すべての引数に値を入れたパターン
 		PlanDAO planDAO = new PlanDAO();
 		PlanBean planBean = new PlanBean();
 		try {
 	
 			//データベース1行目を変更
-			planDAO.updateData(1, 1, "焼肉プラン", "お肉たくさん", 10000, 10);
+			planDAO.update(1, 1, "焼肉プラン", "お肉たくさん", 10000, 10);
 			planBean = planDAO.findBy(1);
 	
 			//変更した1行目をチェック
@@ -133,7 +133,7 @@ class PlanDAOTest extends PlanDAO {
 	/*
 	@Test
 	void test4() {
-		//updateDataメソッドのテスト
+		//updateメソッドのテスト
 		//string型引数に空文字を入れ、int型引数に0を入れたパターン
 	
 		PlanDAO planDAO = new PlanDAO();
@@ -149,7 +149,7 @@ class PlanDAOTest extends PlanDAO {
 		try {
 	
 			//データベース1行目を変更
-			planDAO.updateData(id, hotel_id, name, detail, price, maxrooms);
+			planDAO.update(id, hotel_id, name, detail, price, maxrooms);
 			planBean = planDAO.findBy(1);
 	
 			//変更したレコード1をチェック
@@ -175,7 +175,7 @@ class PlanDAOTest extends PlanDAO {
 	/*
 	@Test
 	void test() {
-		//updateDataメソッドのテスト
+		//updateメソッドのテスト
 		//string型引数にnullを入れ、int型引数に0を入れたパターン
 	
 		PlanDAO planDAO = new PlanDAO();
@@ -191,7 +191,7 @@ class PlanDAOTest extends PlanDAO {
 		try {
 	
 			//データベース1行目を変更
-			planDAO.updateData(id, hotel_id, name, detail, price, maxrooms);
+			planDAO.update(id, hotel_id, name, detail, price, maxrooms);
 			planBean = planDAO.findBy(1);
 	
 			//変更したレコード1をチェック
@@ -255,17 +255,17 @@ class PlanDAOTest extends PlanDAO {
 
 	@Test
 	void test7() {
-		//deleteDataメソッドのテスト
+		//deleteメソッドのテスト
 
 		PlanDAO planDAO = new PlanDAO();
 		PlanBean planBean = new PlanBean();
 
 		try {
 
-			planDAO.deleteData(1);
+			planDAO.delete(1);
 
 			//削除できたかをDBで確認
-			//ここではdeleteDataが例外を出さないことを確認
+			//ここではdeleteが例外を出さないことを確認
 
 		} catch (
 
