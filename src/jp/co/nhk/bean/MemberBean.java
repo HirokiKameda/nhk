@@ -1,12 +1,10 @@
 package jp.co.nhk.bean;
 
-import java.util.Date;
-
 public class MemberBean {
 
 	private int id;
 	private String name;
-	private Date birthday;
+	private String birthday;
 	private String tel;
 	private String address;
 	private String email;
@@ -32,11 +30,11 @@ public class MemberBean {
 		this.name = name;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -72,7 +70,7 @@ public class MemberBean {
 		this.password = password;
 	}
 
-	public MemberBean(int id, String name, Date birthday, String address, String tel, String email, String password) {
+	public MemberBean(int id, String name, String birthday, String address, String tel, String email, String password) {
 		this.id = id;
 		this.name = name;
 		this.birthday = birthday;

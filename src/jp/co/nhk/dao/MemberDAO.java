@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jp.co.nhk.bean.MemberBean;
@@ -65,7 +64,7 @@ public class MemberDAO {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
-				Date birthday = rs.getDate("birthday");
+				String birthday = rs.getString("birthday");
 				String address = rs.getString("address");
 				String tel = rs.getString("tel");
 				String email = rs.getString("email");
@@ -95,7 +94,7 @@ public class MemberDAO {
 		}
 	}
 
-	public int addData(String name, Date birthday, String address, String tel, String email, String password)
+	public int addData(String name, String birthday, String address, String tel, String email, String password)
 			throws Exception {
 		if (con == null) {
 			getConnection();
@@ -121,7 +120,7 @@ public class MemberDAO {
 			st1 = con.prepareStatement(sql1);
 			st1.setInt(1, idMax + 1);
 			st1.setString(2, name);
-			st1.setDate(3, (java.sql.Date) birthday);
+			st1.setString(3, birthday);
 			st1.setString(4, tel);
 			st1.setString(5, address);
 			st1.setString(6, email);
@@ -188,7 +187,7 @@ public class MemberDAO {
 		}
 	}
 
-	public List<MemberBean> findById(int idx) throws Exception {
+	public MemberBean findById(int idx) throws Exception {
 		if (con == null) {
 			getConnection();
 		}
@@ -208,18 +207,30 @@ public class MemberDAO {
 			rs = st.executeQuery();
 			// 結果の取得
 			List<MemberBean> list = new ArrayList<MemberBean>();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				Date birthday = rs.getDate("birthday");
-				String address = rs.getString("address");
-				String tel = rs.getString("tel");
-				String email = rs.getString("email");
-				String password = rs.getString("password");
-				MemberBean bean = new MemberBean(id, name, birthday, address, tel, email, password);
-				list.add(bean);
-			}
-			return list;
+			//			while (rs.next()) {
+			//				int id = rs.getInt("id");
+			//				String name = rs.getString("name");
+			//				String birthday = rs.getString("birthday");
+			//				String address = rs.getString("address");
+			//				String tel = rs.getString("tel");
+			//				String email = rs.getString("email");
+			//				String password = rs.getString("password");
+			//				MemberBean bean = new MemberBean(id, name, birthday, address, tel, email, password);
+			//				list.add(bean);
+			//			}
+			//			return list;
+			rs.next();
+
+			MemberBean member = new MemberBean();
+			member.setId(rs.getInt("id"));
+			member.setName(rs.getString("name"));
+			member.setBirthday(rs.getString("birthday"));
+			member.setAddress(rs.getString("address"));
+			member.setTel(rs.getString("tel"));
+			member.setEmail(rs.getString("email"));
+			member.setPassword(rs.getString("password"));
+
+			return member;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,7 +252,8 @@ public class MemberDAO {
 		}
 	}
 
-	public int updateData(int id, String name, Date birthday, String address, String tel, String email, String password)
+	public int updateData(int id, String name, String birthday, String address, String tel, String email,
+			String password)
 			throws Exception {
 		ResultSet rs = null;
 
@@ -267,7 +279,7 @@ public class MemberDAO {
 			}
 
 			if (birthday == null) {
-				birthday = rs.getDate("birthday");
+				birthday = rs.getString("birthday");
 			}
 			if (address == null || address.isEmpty()) {
 				address = rs.getString("address");
@@ -286,7 +298,7 @@ public class MemberDAO {
 			st = con.prepareStatement(sql2);
 
 			st.setString(1, name);
-			st.setDate(2, (java.sql.Date) birthday);
+			st.setString(2, birthday);
 			st.setString(3, tel);
 			st.setString(4, address);
 			st.setString(5, email);

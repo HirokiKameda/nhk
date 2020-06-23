@@ -27,6 +27,13 @@ public class MemberInsertServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String password = request.getParameter("password");
+		if (password.length() < 9) {
+			request.setAttribute("message", "パスワードの長さが足りません。");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+
 		String action = request.getParameter("action");
 		if ("confirm".equals(action)) {
 			RequestDispatcher rd = request.getRequestDispatcher("memberInsertConfirm.jsp");

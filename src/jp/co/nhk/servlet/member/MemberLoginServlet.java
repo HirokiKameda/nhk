@@ -1,6 +1,8 @@
 package jp.co.nhk.servlet.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import jp.co.nhk.bean.MemberBean;
+import jp.co.nhk.dao.MemberDAO;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -44,10 +49,28 @@ public class MemberLoginServlet extends HttpServlet {
 		String EMAIL = "member";
 		String PASSWORD = "himitu";
 
+		HttpSession session = request.getSession();
+
+		try {
+			MemberDAO memdao = new MemberDAO();
+			List<MemberBean> list = new ArrayList<MemberBean>();
+			list = memdao.findAll();
+			request.setAttribute("list", list);
+			for (MemberBean data : list) {
+				if (data.getEmail() == request.getParameter("email")
+						&& data.getPassword() == request.getParameter("password")) {
+					request.setAttribute("id", data.getId());
+					System.out.println(data.getName());
+				}
+			}
+		} catch (Exception e) {
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+
 		String usertype = "nobody";
 		usertype = request.getParameter("usertype");
 		// アプリケーションスコープの保存領域を確保
-		HttpSession session = request.getSession();
 
 		// アプリケーションスコープに保存
 		session.setAttribute("usertype", usertype);
