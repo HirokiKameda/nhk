@@ -51,16 +51,20 @@ public class MemberLoginServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
+		boolean usersession = false;
+
 		try {
 			MemberDAO memdao = new MemberDAO();
 			List<MemberBean> list = new ArrayList<MemberBean>();
 			list = memdao.findAll();
 			request.setAttribute("list", list);
 			for (MemberBean data : list) {
-				if (data.getEmail() == request.getParameter("email")
-						&& data.getPassword() == request.getParameter("password")) {
-					request.setAttribute("id", data.getId());
+				if (data.getEmail().equals(request.getParameter("email"))
+						&& data.getPassword().equals(request.getParameter("password"))) {
+					request.setAttribute("id", data.getId());//多分sessionの書き間違いだけど消してない
+					session.setAttribute("id", data.getId());
 					System.out.println(data.getName());
+					usersession = true;
 				}
 			}
 		} catch (Exception e) {
@@ -90,9 +94,17 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("isLogin", "0");
 			RequestDispatcher rd = request.getRequestDispatcher("memberMenu.jsp");
 			rd.forward(request, response);
-		} else {
+		} else if (usersession) {
+			request.setAttribute("isLogin", "0");
+			RequestDispatcher rd = request.getRequestDispatcher("memberMenu.jsp");
+			rd.forward(request, response);
+		} else if (usertype.equals("admin")) {
 			request.setAttribute("isLogin", "1");
 			RequestDispatcher rd = request.getRequestDispatcher("adminLogin.jsp");
+			rd.forward(request, response);
+		} else if (usertype.equals("member")) {
+			request.setAttribute("isLogin", "1");
+			RequestDispatcher rd = request.getRequestDispatcher("memberLogin.jsp");
 			rd.forward(request, response);
 		}
 

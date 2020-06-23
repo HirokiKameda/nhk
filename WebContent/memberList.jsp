@@ -19,7 +19,7 @@
 <table border="1">
 <tr><td>NO.</td><td>名前</td><td>生年月日</td><td>電話番号</td><td>住所</td><td>メールアドレス</td><td>パスワード</td></tr>
 
-<tr><td>${memlist.id}</td><td>${memlist.name}</td><td>${memlist.birthday}</td><td>${memlist.address}</td><td>${memlist.tel}</td><td>${memlist.email}</td></tr>
+<tr><td>${memlist.id}</td><td>${memlist.name}</td><td>${memlist.birthday}</td><td>${memlist.address}</td><td>${memlist.tel}</td><td>${memlist.email}</td><td>${memlist.password}</td></tr>
 
 </table>
 

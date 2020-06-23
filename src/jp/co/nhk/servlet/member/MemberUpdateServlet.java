@@ -40,35 +40,49 @@ public class MemberUpdateServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if (name == "" && birthday == "" && tel == "" && address == "" && email == "" && password == "") {
+			//if (name == null && birthday == null && tel == null && address == null && email == null && password == null) {
 			request.setAttribute("message", "何か値を入力してください");
 			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
+			return;
 		}
 
 		HttpSession session = request.getSession(false);
 		String usertype = "nobody";
 		usertype = (String) session.getAttribute("usertype");
+
+		int id = 0;
+		if ("admin".equals(usertype)) {
+			String idString = request.getParameter("id");
+			id = Integer.parseInt(idString);
+		}
+		if ("member".equals(usertype)) {
+			id = (int) session.getAttribute("id");
+		}
+
+		MemberBean newmember = new MemberBean(id, name, birthday, tel, address, email, password);
+		MemberDAO memdao;
 		String action = request.getParameter("action");
 
-		MemberDAO memdao;
 		try {
 			memdao = new MemberDAO();
 
 			if ("nobody".equals(usertype)) {
-				RequestDispatcher rd = request.getRequestDispatcher("memberLogin.jsp");
+				request.setAttribute("message", "ログインしてください");
+				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 				rd.forward(request, response);
 			}
 			if ("member".equals(usertype)) {
 				if ("nyuryoku".equals(action)) {
 					RequestDispatcher rd = request.getRequestDispatcher("memberUpdate.jsp");
 					rd.forward(request, response);
+
 				} else if ("confirm".equals(action)) {
-					String idString = request.getParameter("id");
-					int id = Integer.parseInt(idString);
 
 					try {
 						MemberBean member = memdao.findById(id);
 						request.setAttribute("member", member);
+						request.setAttribute("newmember", newmember);
 						RequestDispatcher rd = request.getRequestDispatcher("memberUpdateConfirm.jsp");
 						rd.forward(request, response);
 					} catch (Exception e) {
@@ -84,8 +98,6 @@ public class MemberUpdateServlet extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("adminMemberUpdate.jsp");
 					rd.forward(request, response);
 				} else if ("confirm".equals(action)) {
-					String idString = request.getParameter("id");
-					int id = Integer.parseInt(idString);
 
 					try {
 						MemberBean member = memdao.findById(id);

@@ -110,7 +110,7 @@ public class MemberDAO {
 			String sql1 = "insert into member(id,name,birthday,address,tel,email,password) values(?,?,?,?,?,?,?)";
 
 			//現在の最終行idを持ってくる
-			String sql2 = "select * from emp order by id desc";
+			String sql2 = "select * from member order by id desc";
 			st2 = con.prepareStatement(sql2);
 			rs = st2.executeQuery();
 			rs.next();
@@ -161,7 +161,7 @@ public class MemberDAO {
 		PreparedStatement st = null;
 		try {
 			//SQL文の作成
-			String sql = "delete from emp where id = ?";
+			String sql = "delete from member where id = ?";
 
 			//PreparedStatementオブジェクトの取得
 			st = con.prepareStatement(sql);
@@ -197,7 +197,7 @@ public class MemberDAO {
 
 		try {
 			//SQL文の作成
-			String sql = "select * from emp where id = ?";
+			String sql = "select * from member where id = ?";
 
 			//PreparedStatementオブジェクトの取得
 			st = con.prepareStatement(sql);
@@ -263,8 +263,8 @@ public class MemberDAO {
 
 		PreparedStatement st = null;
 		try {
-			String sql = "SELECT * FROM emp Where code=?";
-			String sql2 = "UPDATE emp SET name=?,birthday=?,address=?,tel=?,email=?,password=? WHERE id = ?";
+			String sql = "SELECT * FROM member Where id=?";
+			String sql2 = "UPDATE member SET name=?,birthday=?,address=?,tel=?,email=?,password=? WHERE id = ?";
 
 			//オブジェクトの取得
 			st = con.prepareStatement(sql);
