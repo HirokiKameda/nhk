@@ -1,4 +1,4 @@
-package jp.co.nhk.reserve.servlet;
+package jp.co.nhk.servlet.reserve;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ReserveShowServlet
+ * Servlet implementation class ReserveInsertServlet
  */
-@WebServlet("/ReserveShowServlet")
-public class ReserveShowServlet extends HttpServlet {
+@WebServlet("/ReserveInsertServlet")
+public class ReserveInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ReserveShowServlet() {
+	public ReserveInsertServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,6 +31,7 @@ public class ReserveShowServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -44,21 +45,15 @@ public class ReserveShowServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/adminReserveList.jsp");
-		dispatcher.forward(request, response);
+		if (action.equals("input")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserveInsertConfirm.jsp");
+			dispatcher.forward(request, response);
 
-		//二次開発用
-		//管理者側からと、会員側からのアクセスで場合分け
-		/*
-		if (action.equals("admin")) {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/adminReserveList.jsp");
+		} else if (action.equals("confirm")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserveInsertComplete.jsp");
 			dispatcher.forward(request, response);
-		} else if (action.equals("member")) {
-		
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/memberReserveList.jsp");
-			dispatcher.forward(request, response);
+
 		}
-		*/
 
 	}
 
