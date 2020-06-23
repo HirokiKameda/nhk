@@ -32,10 +32,6 @@ public class MemberDeleteServlet extends HttpServlet {
 		String usertype = "nobody";
 		usertype = (String) session.getAttribute("usertype");
 		String action = request.getParameter("action");
-		if ("nobody".equals(usertype)) {
-			RequestDispatcher rd = request.getRequestDispatcher("memberLogin.jsp");
-			rd.forward(request, response);
-		}
 		if ("member".equals(usertype)) {
 			if ("confirm".equals(action)) {
 				RequestDispatcher rd = request.getRequestDispatcher("memberDeleteConfirm.jsp");
