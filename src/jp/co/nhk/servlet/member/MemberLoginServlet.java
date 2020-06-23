@@ -3,12 +3,12 @@ package jp.co.nhk.servlet.member;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MemberLoginServlet
@@ -44,16 +44,16 @@ public class MemberLoginServlet extends HttpServlet {
 		String USERNAME = "member";
 		String PASSWORD = "himitu";
 
-		String usertype = "member";
+		String usertype = "nobody";
 		usertype = request.getParameter("usertype");
 		// アプリケーションスコープの保存領域を確保
-		ServletContext sc = getServletContext();
+		HttpSession session = request.getSession();
 
 		// アプリケーションスコープに保存
-		sc.setAttribute("usertype", usertype);
+		session.setAttribute("usertype", usertype);
 
 		// アプリケーションスコープからインスタンスを取得
-		usertype = (String) sc.getAttribute("usertype");
+		usertype = (String) session.getAttribute("usertype");
 
 		if ((adminUSERNAME.equals(request.getParameter("username")))
 				&& (adminPASSWORD.equals(request.getParameter("password")))

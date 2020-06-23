@@ -12,7 +12,7 @@
 <input type="submit" value="更新">
 </form>
 
-<a href="/nhk/member.menu">メニューに戻る</a>
+<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
 
 
 </body>

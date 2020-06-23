@@ -3,12 +3,12 @@ package jp.co.nhk.servlet.member;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MemberDeleteServlet
@@ -28,9 +28,14 @@ public class MemberUpdateServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletContext sc = getServletContext();
-		String usertype = (String) sc.getAttribute("usertype");
+		HttpSession session = request.getSession(false);
+		String usertype = "nobody";
+		usertype = (String) session.getAttribute("usertype");
 		String action = request.getParameter("action");
+		if ("nobody".equals(usertype)) {
+			RequestDispatcher rd = request.getRequestDispatcher("memberLogin.jsp");
+			rd.forward(request, response);
+		}
 		if ("member".equals(usertype)) {
 			if ("nyuryoku".equals(action)) {
 				RequestDispatcher rd = request.getRequestDispatcher("memberUpdate.jsp");

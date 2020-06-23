@@ -11,6 +11,6 @@
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="登録">
 </form>
-
+<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
 </body>
 </html>
