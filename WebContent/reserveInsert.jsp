@@ -14,8 +14,11 @@
 
 予約情報を入力してください。<br>
 <form action="/nhk/ReserveInsertServlet" method="post">
-予約日時：<input type = number name = "reservedate" ><br>
-部屋数：<input type = number name = "rooms" ><br>
+予約日：<input type = time name = "reservedate" ><br>
+予約時間：<input type = time name = "reservetime" ><br>
+チェックイン日：<input type = time name = "checkindate" ><br>
+チェックアウト日：<input type = time name = "checkoutdate" ><br>
+人数：<input type = number name = "people" ><br>
 <input type=submit value="確認画面へ"><br>
 <input type="hidden" name="action" value="input">
 </form>
