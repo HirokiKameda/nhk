@@ -14,7 +14,7 @@
 
 
 <table border="1">
-<tr><td>予約日</td><td>人数</td></tr>
+<tr><td>予約日</td><td>予約日</td><td>予約時間</td><td>チェックイン日</td><td>チェックアウト日</td><td>人数</td></tr>
 
 <%-- JSPのコメント
 <c:forEach items="${emp}" var="emp">
