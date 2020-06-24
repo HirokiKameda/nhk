@@ -13,7 +13,7 @@
 
 <h1>管理者メニュー</h1>
 <a href ="/nhk/innInsert.jsp">新規宿登録</a>
-<a href ="/nhk//HotelSowServlet?action=admin">宿一覧</a>
+<a href ="/nhk//HotelShowServlet?action=admin">宿一覧</a>
 <form action="/nhk/MemberShowServlet" method="post">
 <input type="hidden" name="list" value="${list}">
 <input type="submit" value="会員一覧">

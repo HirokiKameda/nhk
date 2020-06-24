@@ -198,8 +198,8 @@ public class ReserveDAO {
 		}
 	}
 
-	public void insert(int planId, int memberId, Date reservedate, Time reservetime, Date checkindate,
-			Date checkoutdate,
+	public void insert(int planId, int memberId, String reservedate, String reservetime, String checkindate,
+			String checkoutdate,
 			int rooms, int people)
 			throws DAOException {
 
@@ -224,10 +224,10 @@ public class ReserveDAO {
 			st1.setInt(1, codeMax + 1);
 			st1.setInt(2, planId);
 			st1.setInt(3, memberId);
-			st1.setDate(4, reservedate);
-			st1.setTime(5, reservetime);
-			st1.setDate(6, checkindate);
-			st1.setDate(7, checkoutdate);
+			st1.setString(4, reservedate);
+			st1.setString(5, reservetime);
+			st1.setString(6, checkindate);
+			st1.setString(7, checkoutdate);
 			st1.setInt(8, rooms);
 			st1.setInt(9, people);
 

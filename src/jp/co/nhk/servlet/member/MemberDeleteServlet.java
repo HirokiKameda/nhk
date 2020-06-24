@@ -40,7 +40,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		if ("admin".equals(usertype)) {
 			String idString = request.getParameter("id");
 			id = Integer.parseInt(idString);
-			session.setAttribute("id", id);
+			//	session.setAttribute("id", id);
 		}
 		if ("member".equals(usertype)) {
 			id = (int) session.getAttribute("id");
