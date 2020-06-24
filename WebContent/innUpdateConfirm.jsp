@@ -20,7 +20,6 @@
 <form action="/nhk/HotelUpdateServlet" method="post">
 <input type="submit" value="登録"><br>
 <input type="hidden" name="action" value="confirm">
-<input type="hidden" name="action" value="confirm">
 <input type="hidden" name="name" value=${bean.name}>
 <input type="hidden" name="intro" value=${bean.intro}>
 <input type="hidden" name="address" value=${bean.address}>

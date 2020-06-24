@@ -22,6 +22,22 @@ public class PlanBean implements Serializable {
 	public PlanBean() {
 	}
 
+	public PlanBean(int id, String name, String detail, int price, int maxrooms) {
+		this.id = id;
+		this.name = name;
+		this.detail = detail;
+		this.price = price;
+		this.maxrooms = maxrooms;
+	}
+
+	public PlanBean(String name, String detail, int price, int maxrooms, int hotel_id) {
+		this.hotel_id = hotel_id;
+		this.name = name;
+		this.detail = detail;
+		this.price = price;
+		this.maxrooms = maxrooms;
+	}
+
 	public int getId() {
 		return this.id;
 	}

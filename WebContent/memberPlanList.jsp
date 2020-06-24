@@ -23,13 +23,27 @@
 </c:forEach>
 
 --%>
+<c:forEach items="${plans}" var="list">
+<%-- 「plans」は、受け取るリクエストスコープの名前 --%>
+<tr>
 
+<td>${list.name}</td>
+<td>${list.detail}</td>
+<td>${list.price}</td>
+<td>${list.maxrooms}</td>
+
+
+<br><br>
+
+</tr>
+<a href="/nhk/reserveInsert.jsp?PlanId="${list.id}>予約</a><br>
+</c:forEach>
 
 </table>
 
 
-<a href="/nhk/innList.jsp">宿一覧に戻る</a><br>
-<a href="/nhk/adminMenu.jsp">メニューへに戻る</a><br>
+<a href="/nhk/HotelShowServlet">宿一覧に戻る</a><br>
+<a href="/nhk/memberMenu.jsp">メニューへに戻る</a><br>
 
 
 
