@@ -8,14 +8,16 @@
 </head>
 <body>
 
-「プラン名」の情報を削除してもよろしいでしょうか？<br>
+
+プラン「${name}」 を削除してもよろしいでしょうか？<br>
 
 <form action="/nhk/PlanDeleteServlet" method="post">
 <input type="submit" value="削除"><br>
 <input type="hidden" name="action" value="confirm">
+<input type="hidden" name="nowid" value="${nowid}">
 </form>
 
-<a href="/nhk/adminMenu.jsp">メニューへに戻る</a><br>
+<a href="/nhk/adminMenu.jsp">管理者メニューに戻る</a><br>
 
 
 </body>

@@ -4,15 +4,17 @@ import java.io.Serializable;
 
 public class PlanBean implements Serializable {
 	private int id;
-	private int hotelId;
+	private int hotel_id;
 	private String name;
+	private String detail;
 	private int price;
 	private int maxrooms;
 
-	public PlanBean(int id, int hotelId, String name, int price, int maxrooms) {
+	public PlanBean(int id, int hotelId, String name, String detail, int price, int maxrooms) {
 		this.id = id;
-		this.hotelId = hotelId;
+		this.hotel_id = hotelId;
 		this.name = name;
+		this.detail = detail;
 		this.price = price;
 		this.maxrooms = maxrooms;
 	}
@@ -29,11 +31,11 @@ public class PlanBean implements Serializable {
 	}
 
 	public int getHotelId() {
-		return this.hotelId;
+		return this.hotel_id;
 	}
 
 	public void setHotelId(int hotelId) {
-		this.hotelId = hotelId;
+		this.hotel_id = hotelId;
 	}
 
 	public String getName() {
@@ -42,6 +44,14 @@ public class PlanBean implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 	public int getPrice() {
