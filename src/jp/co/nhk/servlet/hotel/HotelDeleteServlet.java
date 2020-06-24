@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.nhk.bean.HotelBean;
+import jp.co.nhk.dao.DAOException;
+import jp.co.nhk.dao.HotelDAO;
+
 /**
  * Servlet implementation class HotelDeleteServlet
  */
@@ -34,12 +38,30 @@ public class HotelDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		// パラメータの解析
 		String action = request.getParameter("action");
+		HotelDAO dao = new HotelDAO();
+		int id = Integer.parseInt(request.getParameter("nowid"));
+		request.setAttribute("nowid", id);
 
 		if (action == null || action.length() == 0) {
+
+			try {
+				HotelBean bean = dao.findBy(id);
+				String name = bean.getName();
+				request.setAttribute("name", name);
+			} catch (DAOException e1) {
+				// TODO 自動生成された catch ブロック
+				e1.printStackTrace();
+			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/innDeleteConfirm.jsp");
 			dispatcher.forward(request, response);
 		} else if (action.equals("confirm")) {
-			//HotelDAO dao = new HotelDAO();
+
+			try {
+				dao.delete(id);
+			} catch (DAOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/innDeleteComplete.jsp");
 			dispatcher.forward(request, response);

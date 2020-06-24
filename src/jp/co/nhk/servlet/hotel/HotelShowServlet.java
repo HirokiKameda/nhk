@@ -1,6 +1,7 @@
 package jp.co.nhk.servlet.hotel;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import jp.co.nhk.bean.HotelBean;
+import jp.co.nhk.dao.DAOException;
+import jp.co.nhk.dao.HotelDAO;
 
 /**
  * Servlet implementation class HotelShowServlet
@@ -32,6 +37,14 @@ public class HotelShowServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
+		HotelDAO dao = new HotelDAO();
+		try {
+			List<HotelBean> list = dao.findAll();
+			request.setAttribute("inns", list);
+		} catch (DAOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/innList.jsp");
 		dispatcher.forward(request, response);
 	}

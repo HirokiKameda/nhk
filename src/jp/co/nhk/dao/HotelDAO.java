@@ -1,7 +1,6 @@
 package jp.co.nhk.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,8 +47,8 @@ public class HotelDAO {
 				String name = rs.getString("name");
 				String intro = rs.getString("intro");
 				String address = rs.getString("address");
-				Date checkin = rs.getDate("checkin");
-				Date checkout = rs.getDate("checkout");
+				String checkin = rs.getString("checkin");
+				String checkout = rs.getString("checkout");
 				String tel = rs.getString("tel");
 				HotelBean bean = new HotelBean(id, name, intro, address, checkin, checkout, tel);
 				list.add(bean);
@@ -65,7 +64,7 @@ public class HotelDAO {
 	public HotelBean findBy(int id) throws DAOException {
 
 		//SQL文の作成
-		String sql = "select * from hotel WHERE id = ?";
+		String sql = "select * from hotel WHERE id = " + id;
 		try (Connection con = getConnection();
 				PreparedStatement st = con.prepareStatement(sql);
 				ResultSet rs = st.executeQuery();) {
@@ -75,8 +74,8 @@ public class HotelDAO {
 					String name = rs.getString("name");
 					String intro = rs.getString("intro");
 					String address = rs.getString("address");
-					Date checkin = rs.getDate("checkin");
-					Date checkout = rs.getDate("checkout");
+					String checkin = rs.getString("checkin");
+					String checkout = rs.getString("checkout");
 					String tel = rs.getString("tel");
 					HotelBean bean = new HotelBean(id, name, intro, address, checkin, checkout, tel);
 					return bean;
@@ -90,16 +89,17 @@ public class HotelDAO {
 		}
 	}
 
-	public void updateData(int id, String name, String intro, String address, Date checkin, Date checkout, String tel)
+	public void update(int id, String name, String intro, String address, String checkin, String checkout, String tel)
 			throws DAOException {
 
-		String sql = "SELECT * FROM hotel Where id=" + id;
+		String sql = "SELECT * FROM hotel Where id=?";
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try (Connection con = getConnection();) {
 			String sql2 = "UPDATE hotel SET name=?,intro=?,address=?,checkin=?,checkout=?,tel=? WHERE id = ?";
 
 			st = con.prepareStatement(sql);
+			st.setInt(1, id);
 			rs = st.executeQuery();
 			rs.next();
 			if (name == null || name.isEmpty()) {
@@ -113,10 +113,10 @@ public class HotelDAO {
 				address = rs.getString("address");
 			}
 			if (checkin == null || checkin.equals("")) {
-				checkin = rs.getDate("tcheckin");
+				checkin = rs.getString("checkin");
 			}
 			if (checkout == null || checkout.equals("")) {
-				checkout = rs.getDate("checkout");
+				checkout = rs.getString("checkout");
 			}
 
 			if (tel == null || tel.isEmpty()) {
@@ -127,9 +127,10 @@ public class HotelDAO {
 			st.setString(1, name);
 			st.setString(2, intro);
 			st.setString(3, address);
-			st.setDate(4, checkin);
-			st.setDate(5, checkout);
+			st.setString(4, checkin);
+			st.setString(5, checkout);
 			st.setString(6, tel);
+			st.setInt(7, id);
 
 			//System.out.println(st.toString());
 
@@ -169,7 +170,7 @@ public class HotelDAO {
 		}
 	}
 
-	public void insert(String name, String intro, String address, Date checkin, Date checkout, String tel)
+	public void insert(String name, String intro, String address, String checkin, String checkout, String tel)
 			throws DAOException {
 
 		PreparedStatement st1 = null;
@@ -195,8 +196,13 @@ public class HotelDAO {
 			st1.setString(3, intro);
 			st1.setString(4, address);
 
-			st1.setDate(5, checkin);
-			st1.setDate(6, checkout);
+			//			SimpleDateFormat sdf = new SimpleDateFormat("kk:mm:ss");
+			//			java.util.Time date = sdf.parse(checkin);
+			//			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+			//			java.util.Date date2 = sdf.parse(checkout);
+			//			java.sql.Date sqlDate2 = new java.sql.Date(date.getTime());
+			st1.setString(5, checkin);
+			st1.setString(6, checkout);
 			st1.setString(7, tel);
 
 			int rows = st1.executeUpdate();
@@ -225,14 +231,13 @@ public class HotelDAO {
 		}
 	}
 
-	public void deleteData(int id) throws DAOException {
+	public void delete(int id) throws DAOException {
 
 		//SQL文の作成
-		String sql = "delete from emp where code = ?" + id;
+		String sql = "delete from hotel where id = " + id;
 
 		try (Connection con = getConnection();
-				PreparedStatement st = con.prepareStatement(sql);
-				ResultSet rs = st.executeQuery();) {
+				PreparedStatement st = con.prepareStatement(sql);) {
 
 			int rows = st.executeUpdate();
 
