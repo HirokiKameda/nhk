@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jp.co.nhk.bean.PlanBean;
+import jp.co.nhk.dao.DAOException;
+import jp.co.nhk.dao.PlanDAO;
+
 /**
  * Servlet implementation class PlanInsertServlet
  */
@@ -31,22 +35,40 @@ public class PlanInsertServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//PlanDAO dao = new PlanDAO();
-
-		//dao.insert(request.getParameter("id"), request.getParameter("hotelId"), request.getParameter("detail"), request.getParameter("price"), request.getParameter("maxrooms"));
-		//List<PlanBean> list = dao.findAll();
-		//request.setAttribute("plan", list);
-		//request.setAttribute("message", "一件追加しました。");
-
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
+		int nowid = Integer.parseInt(request.getParameter("nowid"));
 
+		request.setAttribute("nowid", nowid);
+
+		if (action == null || action.length() == 0) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsert.jsp");
+			dispatcher.forward(request, response);
+		}
 		if (action.equals("input")) {
+			PlanBean bean = new PlanBean(nowid, request.getParameter("name"), request.getParameter("detail"),
+					Integer.parseInt(request.getParameter("price")),
+					Integer.parseInt(request.getParameter("maxrooms")));
+			request.setAttribute("bean", bean);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsertConfirm.jsp");
 			dispatcher.forward(request, response);
 		} else if (action.equals("confirm")) {
-			//HotelDAO dao = new HotelDAO();
+			PlanDAO dao = new PlanDAO();
 
+			String name = request.getParameter("name");
+			String detail = request.getParameter("detail");
+			String price = request.getParameter("price");
+			int p = Integer.parseInt(price);
+			String maxrooms = request.getParameter("maxrooms");
+			int m = Integer.parseInt(maxrooms);
+
+			try {
+				dao.insert(nowid, name, detail, p, m);
+			} catch (DAOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsertComplete.jsp");
 			dispatcher.forward(request, response);
 		}

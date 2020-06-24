@@ -2,6 +2,8 @@ package jp.co.nhk.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import jp.co.nhk.bean.PlanBean;
@@ -253,7 +255,7 @@ class PlanDAOTest extends PlanDAO {
 	}
 	*/
 
-	@Test
+	//@Test
 	void test7() {
 		//deleteメソッドのテスト
 
@@ -310,5 +312,21 @@ class PlanDAOTest extends PlanDAO {
 	
 	}
 	*/
+	@Test
+	void testtttt() {
+		//findbyhotelメソッドのテスト
+
+		PlanDAO dao = new PlanDAO();
+		try {
+			List<PlanBean> list = dao.findByHotel(1);
+			for (PlanBean b : list) {
+				System.out.println(b.getName());
+			}
+		} catch (DAOException e) {
+			// TODO 自動生成された catch ブロック
+			fail();
+		}
+
+	}
 
 }

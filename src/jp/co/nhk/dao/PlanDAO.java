@@ -156,6 +156,33 @@ public class PlanDAO {
 		}
 	}
 
+	public List<PlanBean> findByHotel(int hotelId) throws DAOException {
+		//SQL文の作成
+		String sql = "select * from plan where hotel_id =" + hotelId;
+		try (Connection con = getConnection();
+				PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery();) {
+			List<PlanBean> list = new ArrayList<PlanBean>();
+			while (rs.next()) {
+				if (hotelId == rs.getInt("hotel_id")) {
+					int id = rs.getInt("id");
+					String name = rs.getString("name");
+					String detail = rs.getString("detail");
+					int price = rs.getInt("price");
+					int maxrooms = rs.getInt("maxrooms");
+
+					PlanBean bean = new PlanBean(id, hotelId, name, detail, price, maxrooms);
+					list.add(bean);
+				}
+			}
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。", e);
+		}
+	}
+
 	private void close() {
 		// TODO 自動生成されたメソッド・スタブ
 		if (con != null) {
