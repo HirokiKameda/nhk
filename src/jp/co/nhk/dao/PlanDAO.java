@@ -115,11 +115,11 @@ public class PlanDAO {
 				detail = rs.getString("detail");
 			}
 
-			if (price == 0) {
+			if (price == -1) {
 				price = rs.getInt("price");
 			}
 
-			if (maxrooms == 0) {
+			if (maxrooms == -1) {
 				maxrooms = rs.getInt("maxrooms");
 			}
 
@@ -153,6 +153,33 @@ public class PlanDAO {
 			} catch (Exception e) {
 				throw new DAOException("リソースの解放に失敗しました。", e);
 			}
+		}
+	}
+
+	public List<PlanBean> findByHotel(int hotelId) throws DAOException {
+		//SQL文の作成
+		String sql = "select * from plan where hotel_id =" + hotelId;
+		try (Connection con = getConnection();
+				PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery();) {
+			List<PlanBean> list = new ArrayList<PlanBean>();
+			while (rs.next()) {
+				if (hotelId == rs.getInt("hotel_id")) {
+					int id = rs.getInt("id");
+					String name = rs.getString("name");
+					String detail = rs.getString("detail");
+					int price = rs.getInt("price");
+					int maxrooms = rs.getInt("maxrooms");
+
+					PlanBean bean = new PlanBean(id, hotelId, name, detail, price, maxrooms);
+					list.add(bean);
+				}
+			}
+			return list;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。", e);
 		}
 	}
 

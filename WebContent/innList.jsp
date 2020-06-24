@@ -20,7 +20,8 @@ ID: ${list.id}<br>
  チェックイン時間：${list.checkin} チェックアウト時間：${list.checkout} 電話番号：${list.tel}
 <br>
 
-<a href="/nhk/PlanShowServlet?action=admin">プランを見る</a>
+<a href="/nhk/PlanShowServlet?nowid=${list.id}">プランを見る</a>
+<a href="/nhk/PlanInsertServlet?nowid=${list.id}">プラン登録</a>
 <a href="/nhk/HotelUpdateServlet?nowid=${list.id}">宿情報変更</a>
 <a href="/nhk/HotelDeleteServlet?nowid=${list.id}">宿削除</a>
 <br>

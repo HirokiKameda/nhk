@@ -32,29 +32,17 @@
 <td>${list.detail}</td>
 <td>${list.price}</td>
 <td>${list.maxrooms}</td>
+<td><a href="/nhk/PlanUpdateServlet?nowid=${list.id}">プラン変更</a></td>
 <td><a href="/nhk/PlanDeleteServlet?nowid=${list.id}">プラン削除</a></td>
 
 <br><br>
 
 </tr>
-
-
 </c:forEach>
-
-<%-- JSPのコメント--%>
-
+</table>
 
 
-</table><br><br><br>
-
-
-<a href="/nhk/planUpdate.jsp">プラン情報の変更</a><br>
-<a href="/nhk/PlanDeleteServlet">プラン情報の削除</a><br>
-
-
-<a href="/nhk/planInsert.jsp">新規プラン登録</a><br>
-<a href="/nhk/planUpdate.jsp">プラン情報の変更</a><br>
-<a href="/nhk/innList.jsp">宿一覧に戻る</a><br>
+<a href="/nhk/HotelShowServlet">宿一覧に戻る</a><br>
 <a href="/nhk/adminMenu.jsp">メニューへに戻る</a><br>
 
 

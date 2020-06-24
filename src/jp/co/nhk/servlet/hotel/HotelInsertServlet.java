@@ -58,7 +58,7 @@ public class HotelInsertServlet extends HttpServlet {
 			String checkout = request.getParameter("checkout");
 			String tel = request.getParameter("tel");
 
-			System.out.println(name + intro + address + checkin + checkout + tel);
+			//System.out.println(name + intro + address + checkin + checkout + tel);
 
 			try {
 				dao.insert(name, intro, address, checkin, checkout, tel);

@@ -16,11 +16,13 @@
 
 登録するプラン情報を入力してください。<br>
 <form action="/nhk/PlanInsertServlet" method="post">
+プラン名：<input type = text name = "name"><br>
 プラン内容：<input type = text name = "detail"><br>
 金額：<input type = number name = "price" ><br>
 部屋数：<input type = number name = "maxrooms" ><br>
 <input type=submit value="確認画面へ"><br>
 <input type="hidden" name="action" value="input">
+<input type="hidden" name="nowid" value="${nowid}">
 </form>
 
 
