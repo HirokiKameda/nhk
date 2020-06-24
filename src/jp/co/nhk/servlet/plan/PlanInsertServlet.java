@@ -44,8 +44,7 @@ public class PlanInsertServlet extends HttpServlet {
 		if (action == null || action.length() == 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsert.jsp");
 			dispatcher.forward(request, response);
-		}
-		if (action.equals("input")) {
+		} else if (action.equals("input")) {
 			PlanBean bean = new PlanBean(nowid, request.getParameter("name"), request.getParameter("detail"),
 					Integer.parseInt(request.getParameter("price")),
 					Integer.parseInt(request.getParameter("maxrooms")));
@@ -58,13 +57,11 @@ public class PlanInsertServlet extends HttpServlet {
 
 			String name = request.getParameter("name");
 			String detail = request.getParameter("detail");
-			String price = request.getParameter("price");
-			int p = Integer.parseInt(price);
-			String maxrooms = request.getParameter("maxrooms");
-			int m = Integer.parseInt(maxrooms);
-
+			//String price = request.getParameter("price");
+			int price = Integer.parseInt(request.getParameter("price"));
+			int maxrooms = Integer.parseInt(request.getParameter("maxrooms"));
 			try {
-				dao.insert(nowid, name, detail, p, m);
+				dao.insert(nowid, name, detail, price, maxrooms);
 			} catch (DAOException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();

@@ -58,7 +58,7 @@ public class PlanUpdateServlet extends HttpServlet {
 
 		if (action == null || action.length() == 0) {
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/innUpdate.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/planUpdate.jsp");
 			dispatcher.forward(request, response);
 		} else if (action.equals("input")) {
 			PlanBean bean = new PlanBean(request.getParameter("name"), request.getParameter("detail"),
