@@ -52,6 +52,8 @@ public class PlanUpdateServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
+		int price = -1;
+		int maxrooms = -1;
 
 		int id = Integer.parseInt(request.getParameter("nowid"));
 		request.setAttribute("nowid", id);
@@ -61,9 +63,14 @@ public class PlanUpdateServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/planUpdate.jsp");
 			dispatcher.forward(request, response);
 		} else if (action.equals("input")) {
+			if (request.getParameter("price") == null || request.getParameter("price").length() != 0) {
+				price = Integer.parseInt(request.getParameter("price"));
+			}
+			if (request.getParameter("maxrooms") == null || request.getParameter("maxrooms").length() != 0) {
+				maxrooms = Integer.parseInt(request.getParameter("maxrooms"));
+			}
 			PlanBean bean = new PlanBean(request.getParameter("name"), request.getParameter("detail"),
-					Integer.parseInt(request.getParameter("price")),
-					Integer.parseInt(request.getParameter("maxrooms")), id);
+					price, maxrooms, id);
 			request.setAttribute("bean", bean);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/planUpdateConfirm.jsp");
 			dispatcher.forward(request, response);
@@ -71,8 +78,13 @@ public class PlanUpdateServlet extends HttpServlet {
 			PlanDAO dao = new PlanDAO();
 			String name = request.getParameter("name");
 			String detail = request.getParameter("detail");
-			int price = Integer.parseInt(request.getParameter("price"));
-			int maxrooms = Integer.parseInt(request.getParameter("maxrooms"));
+
+			if (request.getParameter("price") == null || request.getParameter("price").length() != 0) {
+				price = Integer.parseInt(request.getParameter("price"));
+			}
+			if (request.getParameter("maxrooms") == null || request.getParameter("maxrooms").length() != 0) {
+				maxrooms = Integer.parseInt(request.getParameter("maxrooms"));
+			}
 
 			try {
 				PlanBean pb = dao.findBy(id);

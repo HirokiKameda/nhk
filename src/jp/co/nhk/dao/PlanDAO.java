@@ -115,11 +115,11 @@ public class PlanDAO {
 				detail = rs.getString("detail");
 			}
 
-			if (price == 0) {
+			if (price == -1) {
 				price = rs.getInt("price");
 			}
 
-			if (maxrooms == 0) {
+			if (maxrooms == -1) {
 				maxrooms = rs.getInt("maxrooms");
 			}
 

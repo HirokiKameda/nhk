@@ -16,14 +16,21 @@
 変更に間違いがないか確認してください。<br>
 プラン名:${bean.name}<br>
 プラン内容:${bean.detail}<br>
-金額:${bean.price}<br>
-部屋数:${bean.maxrooms}<br>
+ 金額:
+<c:if test="${bean.price >= 0}">
+ ${bean.price}
+</c:if><br>
+部屋数:
+<c:if test="${bean.maxrooms >= 0}">
+  ${bean.maxrooms}
+</c:if><br>
+
 
 <form action="/nhk/PlanUpdateServlet" method="post">
 <input type="submit" value="変更"><br>
 <input type="hidden" name="action" value="confirm">
 <input type="hidden" name="name" value=${bean.name}>
-<input type="hidden" name="derail" value=${bean.detail}>
+<input type="hidden" name="detail" value=${bean.detail}>
 <input type="hidden" name="price" value=${bean.price}>
 <input type="hidden" name="maxrooms" value=${bean.maxrooms}>
 
