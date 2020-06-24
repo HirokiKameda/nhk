@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import jp.co.nhk.bean.MemberBean;
@@ -65,7 +64,7 @@ public class MemberDAO {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
-				Date birthday = rs.getDate("birthday");
+				String birthday = rs.getString("birthday");
 				String address = rs.getString("address");
 				String tel = rs.getString("tel");
 				String email = rs.getString("email");
@@ -95,7 +94,7 @@ public class MemberDAO {
 		}
 	}
 
-	public int addData(String name, Date birthday, String address, String tel, String email, String password)
+	public int addData(String name, String birthday, String address, String tel, String email, String password)
 			throws Exception {
 		if (con == null) {
 			getConnection();
@@ -111,7 +110,7 @@ public class MemberDAO {
 			String sql1 = "insert into member(id,name,birthday,address,tel,email,password) values(?,?,?,?,?,?,?)";
 
 			//現在の最終行idを持ってくる
-			String sql2 = "select * from emp order by id desc";
+			String sql2 = "select * from member order by id desc";
 			st2 = con.prepareStatement(sql2);
 			rs = st2.executeQuery();
 			rs.next();
@@ -121,14 +120,14 @@ public class MemberDAO {
 			st1 = con.prepareStatement(sql1);
 			st1.setInt(1, idMax + 1);
 			st1.setString(2, name);
-			st1.setDate(3, (java.sql.Date) birthday);
+			st1.setString(3, birthday);
 			st1.setString(4, tel);
 			st1.setString(5, address);
 			st1.setString(6, email);
 			st1.setString(7, password);
 
 			int rows = st1.executeUpdate();
-			return rows;
+			return idMax + 1;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -162,7 +161,7 @@ public class MemberDAO {
 		PreparedStatement st = null;
 		try {
 			//SQL文の作成
-			String sql = "delete from emp where id = ?";
+			String sql = "delete from member where id = ?";
 
 			//PreparedStatementオブジェクトの取得
 			st = con.prepareStatement(sql);
@@ -188,7 +187,7 @@ public class MemberDAO {
 		}
 	}
 
-	public List<MemberBean> findById(int idx) throws Exception {
+	public MemberBean findById(int idx) throws Exception {
 		if (con == null) {
 			getConnection();
 		}
@@ -198,7 +197,7 @@ public class MemberDAO {
 
 		try {
 			//SQL文の作成
-			String sql = "select * from emp where id = ?";
+			String sql = "select * from member where id = ?";
 
 			//PreparedStatementオブジェクトの取得
 			st = con.prepareStatement(sql);
@@ -208,18 +207,30 @@ public class MemberDAO {
 			rs = st.executeQuery();
 			// 結果の取得
 			List<MemberBean> list = new ArrayList<MemberBean>();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				Date birthday = rs.getDate("birthday");
-				String address = rs.getString("address");
-				String tel = rs.getString("tel");
-				String email = rs.getString("email");
-				String password = rs.getString("password");
-				MemberBean bean = new MemberBean(id, name, birthday, address, tel, email, password);
-				list.add(bean);
-			}
-			return list;
+			//			while (rs.next()) {
+			//				int id = rs.getInt("id");
+			//				String name = rs.getString("name");
+			//				String birthday = rs.getString("birthday");
+			//				String address = rs.getString("address");
+			//				String tel = rs.getString("tel");
+			//				String email = rs.getString("email");
+			//				String password = rs.getString("password");
+			//				MemberBean bean = new MemberBean(id, name, birthday, address, tel, email, password);
+			//				list.add(bean);
+			//			}
+			//			return list;
+			rs.next();
+
+			MemberBean member = new MemberBean();
+			member.setId(rs.getInt("id"));
+			member.setName(rs.getString("name"));
+			member.setBirthday(rs.getString("birthday"));
+			member.setAddress(rs.getString("address"));
+			member.setTel(rs.getString("tel"));
+			member.setEmail(rs.getString("email"));
+			member.setPassword(rs.getString("password"));
+
+			return member;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,7 +252,8 @@ public class MemberDAO {
 		}
 	}
 
-	public int updateData(int id, String name, Date birthday, String address, String tel, String email, String password)
+	public int updateData(int id, String name, String birthday, String address, String tel, String email,
+			String password)
 			throws Exception {
 		ResultSet rs = null;
 
@@ -251,8 +263,8 @@ public class MemberDAO {
 
 		PreparedStatement st = null;
 		try {
-			String sql = "SELECT * FROM emp Where code=?";
-			String sql2 = "UPDATE emp SET name=?,birthday=?,address=?,tel=?,email=?,password=? WHERE id = ?";
+			String sql = "SELECT * FROM member Where id=?";
+			String sql2 = "UPDATE member SET name=?,birthday=?,address=?,tel=?,email=?,password=? WHERE id = ?";
 
 			//オブジェクトの取得
 			st = con.prepareStatement(sql);
@@ -266,8 +278,8 @@ public class MemberDAO {
 				name = rs.getString("name");
 			}
 
-			if (birthday == null) {
-				birthday = rs.getDate("birthday");
+			if (birthday == null || birthday.isEmpty()) {
+				birthday = rs.getString("birthday");
 			}
 			if (address == null || address.isEmpty()) {
 				address = rs.getString("address");
@@ -277,7 +289,7 @@ public class MemberDAO {
 				tel = rs.getString("tel");
 			}
 			if (email == null || email.isEmpty()) {
-				email = rs.getString("emaill");
+				email = rs.getString("email");
 			}
 			if (password == null || password.isEmpty()) {
 				password = rs.getString("password");
@@ -286,7 +298,7 @@ public class MemberDAO {
 			st = con.prepareStatement(sql2);
 
 			st.setString(1, name);
-			st.setDate(2, (java.sql.Date) birthday);
+			st.setString(2, birthday);
 			st.setString(3, tel);
 			st.setString(4, address);
 			st.setString(5, email);

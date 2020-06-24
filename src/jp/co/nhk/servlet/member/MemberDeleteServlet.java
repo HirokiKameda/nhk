@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jp.co.nhk.bean.MemberBean;
+import jp.co.nhk.dao.MemberDAO;
+
 /**
  * Servlet implementation class MemberDeleteServlet
  */
@@ -28,29 +31,68 @@ public class MemberDeleteServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 		String usertype = "nobody";
 		usertype = (String) session.getAttribute("usertype");
-		String action = request.getParameter("action");
-		if ("member".equals(usertype)) {
-			if ("confirm".equals(action)) {
-				RequestDispatcher rd = request.getRequestDispatcher("memberDeleteConfirm.jsp");
-				rd.forward(request, response);
-			} else if ("delete".equals(action)) {
-				RequestDispatcher rd = request.getRequestDispatcher("memberDeleteComplete.jsp");
-				rd.forward(request, response);
-			} else {
-			}
-		}
+
+		int id = 0;
 		if ("admin".equals(usertype)) {
-			if ("confirm".equals(action)) {
-				RequestDispatcher rd = request.getRequestDispatcher("adminMemberDeleteConfirm.jsp");
-				rd.forward(request, response);
-			} else if ("delete".equals(action)) {
-				RequestDispatcher rd = request.getRequestDispatcher("adminMemberDeleteComplete.jsp");
-				rd.forward(request, response);
-			} else {
+			String idString = request.getParameter("id");
+			id = Integer.parseInt(idString);
+			session.setAttribute("id", id);
+		}
+		if ("member".equals(usertype)) {
+			id = (int) session.getAttribute("id");
+		}
+
+		MemberDAO memdao;
+		String action = request.getParameter("action");
+		try {
+			memdao = new MemberDAO();
+			if ("member".equals(usertype)) {
+				if ("confirm".equals(action)) {
+					MemberBean member = memdao.findById(id);
+					//					request.setAttribute("member", member);
+					request.setAttribute("name", member.getName());
+					request.setAttribute("birthday", member.getBirthday());
+					request.setAttribute("tel", member.getTel());
+					request.setAttribute("address", member.getAddress());
+					request.setAttribute("email", member.getEmail());
+					request.setAttribute("password", member.getPassword());
+					request.setAttribute("id", id);
+					RequestDispatcher rd = request.getRequestDispatcher("memberDeleteConfirm.jsp");
+					rd.forward(request, response);
+				} else if ("delete".equals(action)) {
+					memdao.deleteData(id);
+					RequestDispatcher rd = request.getRequestDispatcher("memberDeleteComplete.jsp");
+					rd.forward(request, response);
+				} else {
+				}
 			}
+			if ("admin".equals(usertype)) {
+				if ("confirm".equals(action)) {
+					MemberBean member = memdao.findById(id);
+					//					request.setAttribute("member", member);
+					request.setAttribute("name", member.getName());
+					request.setAttribute("birthday", member.getBirthday());
+					request.setAttribute("tel", member.getTel());
+					request.setAttribute("address", member.getAddress());
+					request.setAttribute("email", member.getEmail());
+					request.setAttribute("password", member.getPassword());
+					request.setAttribute("id", id);
+					RequestDispatcher rd = request.getRequestDispatcher("adminMemberDeleteConfirm.jsp");
+					rd.forward(request, response);
+				} else if ("delete".equals(action)) {
+					memdao.deleteData(id);
+					RequestDispatcher rd = request.getRequestDispatcher("adminMemberDeleteComplete.jsp");
+					rd.forward(request, response);
+				} else {
+				}
+			}
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
 		}
 	}
 }
