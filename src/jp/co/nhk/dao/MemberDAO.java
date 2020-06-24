@@ -127,7 +127,7 @@ public class MemberDAO {
 			st1.setString(7, password);
 
 			int rows = st1.executeUpdate();
-			return rows;
+			return idMax + 1;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -278,7 +278,7 @@ public class MemberDAO {
 				name = rs.getString("name");
 			}
 
-			if (birthday == null) {
+			if (birthday == null || birthday.isEmpty()) {
 				birthday = rs.getString("birthday");
 			}
 			if (address == null || address.isEmpty()) {
@@ -289,7 +289,7 @@ public class MemberDAO {
 				tel = rs.getString("tel");
 			}
 			if (email == null || email.isEmpty()) {
-				email = rs.getString("emaill");
+				email = rs.getString("email");
 			}
 			if (password == null || password.isEmpty()) {
 				password = rs.getString("password");

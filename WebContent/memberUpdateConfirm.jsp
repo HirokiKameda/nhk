@@ -24,8 +24,17 @@
 
 <form action="/nhk/MemberUpdateServlet" method="post">
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="member" value="${member}">
-<input type="hidden" name="newmember" value="${newmember}">
+
+<!-- <input type="hidden" name="member" value="${member}">
+<input type="hidden" name="newmember" value="${newmember}"> -->
+
+<input type="hidden" name="name" value="${name}">
+<input type="hidden" name="birthday" value="${birthday}">
+<input type="hidden" name="tel" value="${tel}">
+<input type="hidden" name="address" value="${address}">
+<input type="hidden" name="email" value="${email}">
+<input type="hidden" name="password" value="${password}">
+
 <input type="submit" value="更新">
 </form>
 

@@ -55,6 +55,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		if ("admin".equals(usertype)) {
 			String idString = request.getParameter("id");
 			id = Integer.parseInt(idString);
+			session.setAttribute("id", id);
 		}
 		if ("member".equals(usertype)) {
 			id = (int) session.getAttribute("id");
@@ -83,31 +84,55 @@ public class MemberUpdateServlet extends HttpServlet {
 						MemberBean member = memdao.findById(id);
 						request.setAttribute("member", member);
 						request.setAttribute("newmember", newmember);
+
+						request.setAttribute("name", name);
+						request.setAttribute("birthday", birthday);
+						request.setAttribute("tel", tel);
+						request.setAttribute("address", address);
+						request.setAttribute("email", email);
+						request.setAttribute("password", password);
+
 						RequestDispatcher rd = request.getRequestDispatcher("memberUpdateConfirm.jsp");
 						rd.forward(request, response);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				} else if ("update".equals(action)) {
+					memdao.updateData(id, newmember.getName(), newmember.getBirthday(), newmember.getAddress(),
+							newmember.getTel(), newmember.getEmail(), newmember.getPassword());
 					RequestDispatcher rd = request.getRequestDispatcher("memberUpdateComplete.jsp");
 					rd.forward(request, response);
 				} else {
 				}
 			} else if ("admin".equals(usertype)) {
 				if ("nyuryoku".equals(action)) {
+					request.setAttribute("id", id);
 					RequestDispatcher rd = request.getRequestDispatcher("adminMemberUpdate.jsp");
 					rd.forward(request, response);
 				} else if ("confirm".equals(action)) {
-
+					id = (int) session.getAttribute("id");
 					try {
 						MemberBean member = memdao.findById(id);
 						request.setAttribute("member", member);
+						request.setAttribute("newmember", newmember);
+
+						request.setAttribute("id", id);
+						request.setAttribute("name", name);
+						request.setAttribute("birthday", birthday);
+						request.setAttribute("tel", tel);
+						request.setAttribute("address", address);
+						request.setAttribute("email", email);
+						request.setAttribute("password", password);
+
 						RequestDispatcher rd = request.getRequestDispatcher("adminMemberUpdateConfirm.jsp");
 						rd.forward(request, response);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				} else if ("update".equals(action)) {
+					id = (int) session.getAttribute("id");
+					memdao.updateData(id, newmember.getName(), newmember.getBirthday(), newmember.getAddress(),
+							newmember.getTel(), newmember.getEmail(), newmember.getPassword());
 					RequestDispatcher rd = request.getRequestDispatcher("adminMemberUpdateComplete.jsp");
 					rd.forward(request, response);
 				} else {

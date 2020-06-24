@@ -17,6 +17,7 @@
 メールアドレス:<input type="text" name="email"><br>
 パスワード:<input type="text" name="password"><br>
 <input type="hidden" name="action" value="confirm">
+<input type="hidden" name="id" value="${id}">
 <input type="submit" value="確認">
 </form>
 <a href="/nhk/adminMenu.jsp">メニューに戻る</a>
