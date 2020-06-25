@@ -44,7 +44,7 @@
 
 
 <a href="/nhk/HotelShowServlet">宿一覧に戻る</a><br>
-<a href="/nhk/memberMenu.jsp">メニューへに戻る</a><br>
+<a href="/nhk/memberMenu.jsp">メニューに戻る</a><br>
 
 
 

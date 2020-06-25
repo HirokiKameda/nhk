@@ -235,11 +235,14 @@ public class HotelDAO {
 
 		//SQL文の作成
 		String sql = "delete from hotel where id = " + id;
+		String sql2 = "delete from plan where hotel_id = " + id;
 
 		try (Connection con = getConnection();
-				PreparedStatement st = con.prepareStatement(sql);) {
+				PreparedStatement st = con.prepareStatement(sql);
+				PreparedStatement st2 = con.prepareStatement(sql2);) {
 
 			int rows = st.executeUpdate();
+			int rows2 = st2.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();

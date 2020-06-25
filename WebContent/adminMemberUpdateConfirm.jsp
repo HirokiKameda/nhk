@@ -38,6 +38,7 @@
 <input type="submit" value="更新">
 </form>
 
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 
 </body>
 </html>

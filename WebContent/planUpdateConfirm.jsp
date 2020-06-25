@@ -37,7 +37,7 @@
 <input type="hidden" name="nowid" value="${nowid}">
 </form>
 <a href="/nhk/planUpdate.jsp">入力画面に戻る</a>
-<a href="/nhk/adminMenu.jsp">管理者メニューに戻る</a>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 
 
 </body>
