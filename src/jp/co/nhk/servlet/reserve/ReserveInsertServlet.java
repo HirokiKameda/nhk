@@ -62,7 +62,11 @@ public class ReserveInsertServlet extends HttpServlet {
 		String reservetime = date[1];
 
 		ReserveDAO reDAO = new ReserveDAO();
-		if (action.equals("input")) {
+		if (action == null || action.length() == 0) {
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserveInsert.jsp");
+			dispatcher.forward(request, response);
+		} else if (action.equals("input")) {
 			request.setAttribute("reservedate", reservedate);
 			request.setAttribute("reservetime", reservetime);
 			request.setAttribute("checkindate", checkindate);
