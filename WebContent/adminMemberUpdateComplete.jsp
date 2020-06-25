@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>情報変更完了</title>
 </head>
 <body>
 更新しました
