@@ -59,6 +59,7 @@ public class MemberInsertServlet extends HttpServlet {
 			} else if ("insert".equals(action)) {
 				HttpSession session = request.getSession(false);
 				session.setAttribute("id", memdao.addData(name, birthday, address, tel, email, password));
+				session.setAttribute("usertype", "member");
 				RequestDispatcher rd = request.getRequestDispatcher("memberInsertComplete.jsp");
 				rd.forward(request, response);
 			} else {
