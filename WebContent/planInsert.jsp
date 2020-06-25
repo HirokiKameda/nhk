@@ -26,7 +26,7 @@
 </form>
 
 
-<a href="/nhk/adminMenu.jsp">管理者メニューに戻る</a>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 
 
 

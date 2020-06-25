@@ -27,6 +27,6 @@ ID: ${list.id}<br>
 <br>
 </c:forEach>
 <br>
-<a href="/nhk/adminMenu.jsp">メニューへに戻る</a>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 </body>
 </html>
