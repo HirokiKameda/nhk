@@ -20,7 +20,7 @@ ID: ${list.id}<br>
  チェックイン時間：${list.checkin} チェックアウト時間：${list.checkout} 電話番号：${list.tel}
 <br>
 
-<a href="/nhk/PlanShowServlet?action=member">プランを見る</a>
+<a href="/nhk/PlanShowServlet?nowid=${list.id}">プランを見る</a>
 
 <br>
 </c:forEach>

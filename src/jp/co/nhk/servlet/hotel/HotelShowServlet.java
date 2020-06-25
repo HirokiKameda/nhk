@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import jp.co.nhk.bean.HotelBean;
 import jp.co.nhk.dao.DAOException;
@@ -36,6 +37,9 @@ public class HotelShowServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession(false);
+		String usertype = "nobody";
+		usertype = (String) session.getAttribute("usertype");
 		request.setCharacterEncoding("UTF-8");
 		HotelDAO dao = new HotelDAO();
 		try {
@@ -45,8 +49,14 @@ public class HotelShowServlet extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/innList.jsp");
-		dispatcher.forward(request, response);
+		if (usertype.contentEquals("admin")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/innList.jsp");
+			dispatcher.forward(request, response);
+		}
+		if (usertype.contentEquals("member")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/memInnList.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	/**

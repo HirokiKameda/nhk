@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import jp.co.nhk.dao.DAOException;
 import jp.co.nhk.dao.ReserveDAO;
 
 /**
@@ -54,13 +55,18 @@ public class ReserveInsertServlet extends HttpServlet {
 		String checkoutdate = request.getParameter("checkoutdate");
 		String people = request.getParameter("people");
 		String PlanId = request.getParameter("PlanId");
+		request.setAttribute("PlanId", PlanId);
 
 		String[] date = dateString.split(",", 0);
 		String reservedate = date[0];
 		String reservetime = date[1];
 
 		ReserveDAO reDAO = new ReserveDAO();
-		if (action.equals("input")) {
+		if (action == null || action.length() == 0) {
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserveInsert.jsp");
+			dispatcher.forward(request, response);
+		} else if (action.equals("input")) {
 			request.setAttribute("reservedate", reservedate);
 			request.setAttribute("reservetime", reservetime);
 			request.setAttribute("checkindate", checkindate);
@@ -73,17 +79,17 @@ public class ReserveInsertServlet extends HttpServlet {
 		} else if (action.equals("confirm")) {
 			HttpSession session = request.getSession(false);
 			int memberId = 0;
-			//memberId = (int) session.getAttribute("id");//管理者の場合idを頑張って持ってくる必要あり
+			memberId = (int) session.getAttribute("id");//管理者の場合idを頑張って持ってくる必要あり
 			int rooms = (Integer.parseInt(people) + 1) / 2;
 			int peopledata = Integer.parseInt(people);
 
-			//			int planId=Integer.parseInt("PlanId");
+			int planId = Integer.parseInt(PlanId);
 
-			//			try {
-			//				reDAO.insert(planId, memberId, reservedate, reservetime, checkindate, checkoutdate, rooms, peopledata);
-			//			} catch (DAOException e) {
-			//				e.printStackTrace();
-			//			}
+			try {
+				reDAO.insert(planId, memberId, reservedate, reservetime, checkindate, checkoutdate, rooms, peopledata);
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserveInsertComplete.jsp");
 			dispatcher.forward(request, response);
 
