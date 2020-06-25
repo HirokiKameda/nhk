@@ -31,6 +31,7 @@
 <td>${list.detail}</td>
 <td>${list.price}</td>
 <td>${list.maxrooms}</td>
+
 <td><a href="/nhk/ReserveInsertServlet?PlanId=${list.id}">予約</a><br></td>
 
 <br><br>
