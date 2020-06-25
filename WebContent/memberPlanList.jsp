@@ -14,9 +14,6 @@
 <body>
 
 
-<table border="1">
-<tr><td>プラン名</td><td>内容</td><td>金額</td><td>部屋数</td></tr>
-
 <%-- JSPのコメント
 <c:forEach items="${emp}" var="emp">
 <tr><td>${emp.code}</td><td>${emp.name}</td><td>${emp.age}</td><td>${emp.tel}</td></tr>
@@ -25,6 +22,10 @@
 --%>
 <c:forEach items="${plans}" var="list">
 <%-- 「plans」は、受け取るリクエストスコープの名前 --%>
+
+<table border="1">
+<tr><td>プラン名</td><td>内容</td><td>金額</td><td>部屋数</td></tr>
+
 <tr>
 
 <td>${list.name}</td>
@@ -32,12 +33,14 @@
 <td>${list.price}</td>
 <td>${list.maxrooms}</td>
 
-<br><br>
+
 
 </tr>
 
-<td>
-<!--  <a href="/nhk/ReserveInsertServlet?PlanId=${list.id}">予約</a>--><br></td>
+<!-- <td> -->
+<!--  <a href="/nhk/ReserveInsertServlet?PlanId=${list.id}">予約</a><br></td>-->
+
+</table>
 
 <form action="/nhk/ReserveInsertServlet" method="post">
 <input type="hidden" name="HotelId" value="${nowid}">
@@ -47,8 +50,6 @@
 
 
 </c:forEach>
-
-</table>
 
 
 <a href="/nhk/HotelShowServlet">宿一覧に戻る</a><br>
