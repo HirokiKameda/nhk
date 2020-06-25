@@ -20,6 +20,7 @@
 人数：<input type = "number" name = "people" ><br>
 <input type="hidden" name="action" value="input">
 <input type="hidden" name="PlanId" value="${PlanId}">
+<input type="hidden" name="HotelId" value="${HotelId}">
 <input type=submit value="確認画面へ"><br>
 </form>
 

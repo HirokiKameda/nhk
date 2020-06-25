@@ -55,7 +55,9 @@ public class ReserveInsertServlet extends HttpServlet {
 		String checkoutdate = request.getParameter("checkoutdate");
 		String people = request.getParameter("people");
 		String PlanId = request.getParameter("PlanId");
+		String HotelId = request.getParameter("HotelId");
 		request.setAttribute("PlanId", PlanId);
+		request.setAttribute("HotelId", HotelId);
 
 		String[] date = dateString.split(",", 0);
 		String reservedate = date[0];
@@ -73,6 +75,8 @@ public class ReserveInsertServlet extends HttpServlet {
 			request.setAttribute("checkoutdate", checkoutdate);
 			request.setAttribute("people", people);
 			request.setAttribute("PlanId", PlanId);
+			request.setAttribute("HotelId", HotelId);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserveInsertConfirm.jsp");
 			dispatcher.forward(request, response);
 
@@ -84,9 +88,11 @@ public class ReserveInsertServlet extends HttpServlet {
 			int peopledata = Integer.parseInt(people);
 
 			int planId = Integer.parseInt(PlanId);
+			int hotelId = Integer.parseInt(HotelId);
 
 			try {
-				reDAO.insert(planId, memberId, reservedate, reservetime, checkindate, checkoutdate, rooms, peopledata);
+				reDAO.insert(hotelId, planId, memberId, reservedate, reservetime, checkindate, checkoutdate, rooms,
+						peopledata);
 			} catch (DAOException e) {
 				e.printStackTrace();
 			}

@@ -28,6 +28,7 @@
 <input type="hidden" name="checkoutdate" value="${checkoutdate}">
 <input type="hidden" name="people" value="${people}">
 <input type="hidden" name="PlanId" value="${PlanId}">
+<input type="hidden" name="HotelId" value="${HotelId}">
 <input type="submit" value="予約"><br>
 </form>
 <a href="/nhk/reserveInsert.jsp">予約画面に戻る</a>

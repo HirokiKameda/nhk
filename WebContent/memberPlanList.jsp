@@ -32,11 +32,19 @@
 <td>${list.price}</td>
 <td>${list.maxrooms}</td>
 
-<td><a href="/nhk/ReserveInsertServlet?PlanId=${list.id}">予約</a><br></td>
-
 <br><br>
 
 </tr>
+
+<td>
+<!--  <a href="/nhk/ReserveInsertServlet?PlanId=${list.id}">予約</a>--><br></td>
+
+<form action="/nhk/ReserveInsertServlet" method="post">
+<input type="hidden" name="HotelId" value="${nowid}">
+<input type="hidden" name="PlanId" value="${list.id}">
+<input type="submit" value="予約">
+</form>
+
 
 </c:forEach>
 

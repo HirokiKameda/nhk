@@ -46,16 +46,17 @@ public class ReserveDAO {
 			List<ReserveBean> list = new ArrayList<ReserveBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
+				int hotelId = rs.getInt("hotel_id");
 				int planId = rs.getInt("plan_id");
 				int memberId = rs.getInt("member_id");
-				Date reservedate = rs.getDate("reservedate");
-				Time reservetime = rs.getTime("reservetime");
-				Date checkindate = rs.getDate("checkindate");
-				Date checkoutdate = rs.getDate("checkoutdate");
+				String reservedate = rs.getString("reservedate");
+				String reservetime = rs.getString("reservetime");
+				String checkindate = rs.getString("checkindate");
+				String checkoutdate = rs.getString("checkoutdate");
 				int rooms = rs.getInt("rooms");
 				int people = rs.getInt("people");
 
-				ReserveBean bean = new ReserveBean(id, planId, memberId, reservedate, reservetime, checkindate,
+				ReserveBean bean = new ReserveBean(id, hotelId, planId, memberId, reservedate, reservetime, checkindate,
 						checkoutdate,
 						rooms, people);
 				list.add(bean);
@@ -79,21 +80,58 @@ public class ReserveDAO {
 			while (rs.next()) {
 				if (id == rs.getInt("id")) {
 					int planId = rs.getInt("plan_id");
+					int hotelId = rs.getInt("hotel_id");
 					int memberId = rs.getInt("member_id");
-					Date reservedate = rs.getDate("reservedate");
-					Time reservetime = rs.getTime("reservetime");
-					Date checkindate = rs.getDate("checkindate");
-					Date checkoutdate = rs.getDate("checkoutdate");
+					String reservedate = rs.getString("reservedate");
+					String reservetime = rs.getString("reservetime");
+					String checkindate = rs.getString("checkindate");
+					String checkoutdate = rs.getString("checkoutdate");
 					int rooms = rs.getInt("rooms");
 					int people = rs.getInt("people");
 
-					ReserveBean bean = new ReserveBean(id, planId, memberId, reservedate, reservetime, checkindate,
+					ReserveBean bean = new ReserveBean(id, hotelId, planId, memberId, reservedate, reservetime,
+							checkindate,
 							checkoutdate,
 							rooms, people);
 					return bean;
 				}
 			}
 			return null;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました。", e);
+		}
+	}
+
+	public List<ReserveBean> findByMember(int id) throws DAOException {
+
+		//SQL文の作成
+		String sql = "select * from reservation";
+		try (Connection con = getConnection();
+				PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery();) {
+			List<ReserveBean> list = new ArrayList<ReserveBean>();
+			while (rs.next()) {
+				if (id == rs.getInt("id")) {
+					int planId = rs.getInt("plan_id");
+					int hotelId = rs.getInt("hotel_id");
+					int memberId = rs.getInt("member_id");
+					String reservedate = rs.getString("reservedate");
+					String reservetime = rs.getString("reservetime");
+					String checkindate = rs.getString("checkindate");
+					String checkoutdate = rs.getString("checkoutdate");
+					int rooms = rs.getInt("rooms");
+					int people = rs.getInt("people");
+
+					ReserveBean bean = new ReserveBean(id, hotelId, planId, memberId, reservedate, reservetime,
+							checkindate,
+							checkoutdate,
+							rooms, people);
+					list.add(bean);
+				}
+			}
+			return list;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -198,7 +236,8 @@ public class ReserveDAO {
 		}
 	}
 
-	public void insert(int planId, int memberId, String reservedate, String reservetime, String checkindate,
+	public void insert(int hotel_Id, int planId, int memberId, String reservedate, String reservetime,
+			String checkindate,
 			String checkoutdate,
 			int rooms, int people)
 			throws DAOException {
@@ -210,7 +249,7 @@ public class ReserveDAO {
 
 		try (Connection con = getConnection();) {
 			//SQL文の作成
-			String sql1 = "insert into reservation(id,plan_id,member_id, reservedate,reservetime,checkindate,checkoutdate,rooms,people) values(?,?,?,?,?,?,?,?,?)";
+			String sql1 = "insert into reservation(id,hotel_id,plan_id,member_id, reservedate,reservetime,checkindate,checkoutdate,rooms,people) values(?,?,?,?,?,?,?,?,?,?)";
 
 			//現在の最終行codeを持ってくる
 			String sql2 = "select * from reservation order by id desc";
@@ -222,14 +261,15 @@ public class ReserveDAO {
 			//PreparedStatementオブジェクトの取得
 			st1 = con.prepareStatement(sql1);
 			st1.setInt(1, codeMax + 1);
-			st1.setInt(2, planId);
-			st1.setInt(3, memberId);
-			st1.setString(4, reservedate);
-			st1.setString(5, reservetime);
-			st1.setString(6, checkindate);
-			st1.setString(7, checkoutdate);
-			st1.setInt(8, rooms);
-			st1.setInt(9, people);
+			st1.setInt(2, hotel_Id);
+			st1.setInt(3, planId);
+			st1.setInt(4, memberId);
+			st1.setString(5, reservedate);
+			st1.setString(6, reservetime);
+			st1.setString(7, checkindate);
+			st1.setString(8, checkoutdate);
+			st1.setInt(9, rooms);
+			st1.setInt(10, people);
 
 			int rows = st1.executeUpdate();
 
