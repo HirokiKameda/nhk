@@ -11,6 +11,7 @@
 <h1>会員メニュー</h1>
 <a href ="/nhk/memberUpdate.jsp">会員情報変更</a>
 <a href ="/nhk/HotelShowServlet">予約</a>
+<a href ="/nhk/ReserveShowServlet">予約履歴</a>
 <form action="/nhk/MemberDeleteServlet" method="post">
 <input type="hidden" name="action" value="confirm">
 <input type="submit" value="会員退会">

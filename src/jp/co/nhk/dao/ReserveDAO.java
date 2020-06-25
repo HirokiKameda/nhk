@@ -107,16 +107,16 @@ public class ReserveDAO {
 	public List<ReserveBean> findByMember(int id) throws DAOException {
 
 		//SQL文の作成
-		String sql = "select * from reservation";
+		String sql = "select * from reservation where member_id=" + id;
 		try (Connection con = getConnection();
 				PreparedStatement st = con.prepareStatement(sql);
 				ResultSet rs = st.executeQuery();) {
 			List<ReserveBean> list = new ArrayList<ReserveBean>();
 			while (rs.next()) {
-				if (id == rs.getInt("id")) {
+				if (id == rs.getInt("member_id")) {
 					int planId = rs.getInt("plan_id");
 					int hotelId = rs.getInt("hotel_id");
-					int memberId = rs.getInt("member_id");
+					int idx = rs.getInt("id");
 					String reservedate = rs.getString("reservedate");
 					String reservetime = rs.getString("reservetime");
 					String checkindate = rs.getString("checkindate");
@@ -124,7 +124,7 @@ public class ReserveDAO {
 					int rooms = rs.getInt("rooms");
 					int people = rs.getInt("people");
 
-					ReserveBean bean = new ReserveBean(id, hotelId, planId, memberId, reservedate, reservetime,
+					ReserveBean bean = new ReserveBean(idx, hotelId, planId, id, reservedate, reservetime,
 							checkindate,
 							checkoutdate,
 							rooms, people);

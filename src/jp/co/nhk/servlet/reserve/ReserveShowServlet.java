@@ -89,11 +89,40 @@ public class ReserveShowServlet extends HttpServlet {
 		} else if (action.equals("member")) {
 			List<ReserveBean> list = new ArrayList<ReserveBean>();
 			try {
-				request.setAttribute("list", redao.findByMember((int) session.getAttribute("id")));
-			} catch (DAOException e) {
+				int id = (int) session.getAttribute("id");
+				list = redao.findByMember(id);
+			} catch (DAOException e1) {
 				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
+				e1.printStackTrace();
 			}
+			List<HotelBean> list2 = new ArrayList<HotelBean>();
+			//			try {
+			//				list2 = hodao.findAll();
+			//			} catch (DAOException e1) {
+			//				// TODO 自動生成された catch ブロック
+			//				e1.printStackTrace();
+			//			}
+			//List<String> hotelList=new ArrayList<String>();
+			int index = 0;
+			for (ReserveBean data : list) {
+				try {
+					list2.add(hodao.findBy(data.getHotelId()));
+					//					data.setHotelname(list2.get(index).getName());
+					list.get(index).setHotelname(list2.get(index).getName());
+					index++;
+				} catch (DAOException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+					System.out.println("宿データなし");
+					//					data.setHotelname("すでにないデータです");
+					list.get(index).setHotelname("すでにないデータです");
+					index++;
+				}
+			}
+
+			request.setAttribute("list", list);
+			//	request.setAttribute("hotellist", list2);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/memberReserveList.jsp");
 			dispatcher.forward(request, response);
 		}
