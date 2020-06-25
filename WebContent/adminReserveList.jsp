@@ -30,8 +30,8 @@
 
 
 
-<a href="/nhk/adminPlanList.jsp">プラン情報の一覧に戻る</a><br>
-<a href="/nhk/adminMenu.jsp">管理者メニューへに戻る</a><br>
+<a href="/nhk/adminPlanList.jsp">プラン情報に戻る</a><br>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a><br>
 
 
 
