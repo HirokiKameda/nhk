@@ -16,7 +16,7 @@ ${name} の情報を削除してもよろしいでしょうか？<br>
 <input type="hidden" name="nowid" value="${nowid}">
 </form>
 
-<a href="/nhk/adminMenu.jsp">メニューへに戻る</a><br>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a><br>
 
 </body>
 </html>

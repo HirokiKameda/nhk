@@ -25,13 +25,13 @@
 <input type="hidden" name="nowid" value="${nowid}">
 
 <input type="hidden" name="name" value=${bean.name}>
-<input type="hidden" name="derail" value=${bean.detail}>
+<input type="hidden" name="detail" value=${bean.detail}>
 <input type="hidden" name="price" value=${bean.price}>
 <input type="hidden" name="maxrooms" value=${bean.maxrooms}>
 
 </form>
 <a href="/nhk/planInsert.jsp">入力画面に戻る</a>
-<a href="/nhk/adminMenu.jsp">管理者メニューに戻る</a>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 
 
 </body>

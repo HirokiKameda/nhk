@@ -21,6 +21,6 @@
 <input type="hidden" name="nowid" value="${nowid}">
 </form>
 <br>
-<a href="/nhk/adminMenu.jsp">メニューへに戻る</a>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 </body>
 </html>
