@@ -5,12 +5,49 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+<jsp:include page="_head.jsp" />
+
 <body>
 
+<br><br>
+<h3>会員様ログイン</h3>
+<div class ="row">
+  <div class ="col-md-4">
+<form class="p-4" action="/nhk/MemberLoginServlet" method="post">
+  <div class="form-group">
+
+
+    <label for="exampleDropdownFormUserName">Email address</label>
+    <input class="form-control" type="text" name="email" id="exampleDropdownFormUserName" placeholder="email@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleDropdownFormPassword2">Password</label>
+    <input class="form-control" type="text" name="password" id="exampleDropdownFormPassword" placeholder="Password">
+  </div>
+  <input type="hidden" name="usertype" value="member">
+  <button type="submit" value="login" class="btn btn-primary">Login</button>
+</form>
+</div></div>
+
+<c:if test="${isLogin eq 1}">
+メールアドレスもしくはパスワードが間違っています。
+</c:if>
+<br>
+
+<a href="/nhk/memberInsert.jsp">新規会員登録</a>
+<br><br><br>
+
+<jsp:include page="_script.jsp" />
+
+</body>
+</html>
+
+
+
+<!-- bootstrap追加前 -->
+
+<!--
 <h1>会員様ログイン</h1>
 
 <form action="/nhk/MemberLoginServlet" method="post">
@@ -27,5 +64,6 @@ password:<input type="text" name="password"><br>
 
 <a href="/nhk/memberInsert.jsp">新規会員登録</a>
 
-</body>
-</html>
+
+
+ -->
