@@ -13,24 +13,23 @@
 <body>
 
 
-<table border="1">
-<tr><td>予約日</td><td>予約日</td><td>予約時間</td><td>チェックイン日</td><td>チェックアウト日</td><td>人数</td></tr>
 
-<%-- JSPのコメント
-<c:forEach items="${emp}" var="emp">
-<tr><td>${emp.code}</td><td>${emp.name}</td><td>${emp.age}</td><td>${emp.tel}</td></tr>
+
+<c:forEach items="${list}" var="reslist">
+<table border="1">
+<tr><td>ID</td><td>ホテルID</td><td>ホテル名</td><td>プランID</td><td>メンバーID</td><td>予約日</td><td>予約時間</td><td>チェックイン日</td><td>チェックアウト日</td><td>部屋数</td><td>人数</td></tr>
+
+<tr><td>${reslist.id}</td><td>${reslist.hotelId}</td><td>${reslist.hotelname}</td><td>${reslist.planId}</td><td>${reslist.memberId}</td><td>${reslist.reservedate}</td><td>${reslist.reservetime}</td><td>${reslist.checkindate}</td><td>${reslist.checkoutdate}</td><td>${reslist.rooms}</td><td>${reslist.people}</td></tr>
+
+</table>
+
+<br>
+
 </c:forEach>
 
---%>
 
 
 
-</table><br><br><br>
-
-
-
-
-<a href="/nhk/adminPlanList.jsp">プラン情報に戻る</a><br>
 <a href="/nhk/adminMenu.jsp">メニューに戻る</a><br>
 
 

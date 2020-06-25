@@ -1,22 +1,48 @@
 package jp.co.nhk.bean;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class ReserveBean {
 	private int id;
 	private int planId;
 	private int memberId;
-	private Date reservedate;
-	private Time reservetime;
-	private Date checkindate;
-	private Date checkoutdate;
+	private String reservedate;
+
+	public String getReservedate() {
+		return reservedate;
+	}
+
+	public String getReservetime() {
+		return reservetime;
+	}
+
+	public String getCheckindate() {
+		return checkindate;
+	}
+
+	public String getCheckoutdate() {
+		return checkoutdate;
+	}
+
+	private String reservetime;
+	private String checkindate;
+	private String checkoutdate;
 	private int rooms;
 	private int people;
+	private int hotelId;
+	private String hotelname;
 
-	public ReserveBean(int id, int planId, int memberId, Date reservedate, Time reservetime, Date checkindate,
-			Date checkoutdate, int rooms, int people) {
+	public String getHotelname() {
+		return hotelname;
+	}
+
+	public void setHotelname(String hotelname) {
+		this.hotelname = hotelname;
+	}
+
+	public ReserveBean(int id, int hotelId, int planId, int memberId, String reservedate, String reservetime,
+			String checkindate,
+			String checkoutdate, int rooms, int people) {
 		this.id = id;
+		this.hotelId = hotelId;
 		this.planId = planId;
 		this.memberId = memberId;
 		this.reservedate = reservedate;
@@ -26,6 +52,30 @@ public class ReserveBean {
 		this.rooms = rooms;
 		this.people = people;
 
+	}
+
+	public int getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(int hotelId) {
+		this.hotelId = hotelId;
+	}
+
+	public void setReservedate(String reservedate) {
+		this.reservedate = reservedate;
+	}
+
+	public void setReservetime(String reservetime) {
+		this.reservetime = reservetime;
+	}
+
+	public void setCheckindate(String checkindate) {
+		this.checkindate = checkindate;
+	}
+
+	public void setCheckoutdate(String checkoutdate) {
+		this.checkoutdate = checkoutdate;
 	}
 
 	public ReserveBean() {
@@ -53,38 +103,6 @@ public class ReserveBean {
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
-	}
-
-	public Date getReservedate() {
-		return reservedate;
-	}
-
-	public void setReservedate(Date reservedate) {
-		this.reservedate = reservedate;
-	}
-
-	public Time getReservetime() {
-		return reservetime;
-	}
-
-	public void setReservetime(Time reservetime) {
-		this.reservetime = reservetime;
-	}
-
-	public Date getCheckindate() {
-		return checkindate;
-	}
-
-	public void setCheckindate(Date checkindate) {
-		this.checkindate = checkindate;
-	}
-
-	public Date getCheckoutdate() {
-		return checkoutdate;
-	}
-
-	public void setCheckoutdate(Date checkoutdate) {
-		this.checkoutdate = checkoutdate;
 	}
 
 	public int getRooms() {
