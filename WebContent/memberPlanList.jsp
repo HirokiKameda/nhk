@@ -7,19 +7,65 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+<jsp:include page="_head.jsp" />
+
 <body>
 
+<div class="card-columns">
 
-<%-- JSPのコメント
-<c:forEach items="${emp}" var="emp">
-<tr><td>${emp.code}</td><td>${emp.name}</td><td>${emp.age}</td><td>${emp.tel}</td></tr>
+
+<c:forEach items="${plans}" var="list">
+<div class="card" style="width: 18rem;">
+
+
+
+<div class="card-header">
+<h5>${list.name}</h5>
+</div>
+  <div class="card-body">
+      <p class="card-text">${list.detail}</p>
+
+    <p class="card-text">金額：${list.price}<br>部屋数：${list.maxrooms}</p>
+
+  </div>
+
+  <div class="card-body">
+  <form action="/nhk/ReserveInsertServlet" method="post">
+<input type="hidden" name="HotelId" value="${nowid}">
+<input type="hidden" name="PlanId" value="${list.id}">
+<button type="submit" class="btn btn-outline-secondary">予約</button>
+</form>
+
+
+</div>
+
+
+
+
+
+</div>
 </c:forEach>
+</div>
 
---%>
+
+<a href="/nhk/HotelShowServlet">
+<button type="button" class="btn btn-outline-primary">宿一覧に戻る</button></a>
+
+<a href="/nhk/memberMenu.jsp">
+<button type="button" class="btn btn-outline-primary">メニューに戻る</button></a><br>
+
+
+
+
+<jsp:include page="_script.jsp" />
+</body>
+</html>
+
+
+
+<!--
+
 <c:forEach items="${plans}" var="list">
 <%-- 「plans」は、受け取るリクエストスコープの名前 --%>
 
@@ -40,6 +86,8 @@
 <!-- <td> -->
 <!--  <a href="/nhk/ReserveInsertServlet?PlanId=${list.id}">予約</a><br></td>-->
 
+
+<!--
 </table>
 
 <form action="/nhk/ReserveInsertServlet" method="post">
@@ -56,6 +104,5 @@
 <a href="/nhk/memberMenu.jsp">メニューに戻る</a><br>
 
 
+-->
 
-</body>
-</html>
