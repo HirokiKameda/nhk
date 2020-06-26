@@ -9,10 +9,7 @@
 <body>
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'kameda_bootstrapDeploy' of https://github.com/HirokiKameda/nhk.git
 <br>
 <h3>会員様メニュー</h3>
 

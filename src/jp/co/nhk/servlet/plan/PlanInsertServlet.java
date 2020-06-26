@@ -44,7 +44,21 @@ public class PlanInsertServlet extends HttpServlet {
 		if (action == null || action.length() == 0) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/planInsert.jsp");
 			dispatcher.forward(request, response);
+
 		} else if (action.equals("input")) {
+
+			String tname = request.getParameter("name");
+			String tdetail = request.getParameter("detail");
+			//String price = request.getParameter("price");
+			String tprice = request.getParameter("price");
+			String tmaxrooms = request.getParameter("maxrooms");
+			if (tname.isEmpty() || tdetail.isEmpty() || tprice.isEmpty() || tmaxrooms.isEmpty()) {//追加したエラー処理
+				request.setAttribute("message", "必須項目を入力してください");
+				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+				rd.forward(request, response);
+				return;
+			}
+
 			PlanBean bean = new PlanBean(nowid, request.getParameter("name"), request.getParameter("detail"),
 					Integer.parseInt(request.getParameter("price")),
 					Integer.parseInt(request.getParameter("maxrooms")));
