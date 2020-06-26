@@ -14,6 +14,60 @@
 <body>
 
 
+
+
+<div class="container">
+<div class="row">
+        <div class="center-block">
+
+
+<div class="card-columns">
+
+<c:forEach items="${plans}" var="list">
+<div class="card m-4" style="width: 18rem;">
+
+
+
+<div class="card-header">
+<h5>${list.name}</h5>
+</div>
+  <div class="card-body">
+      <p class="card-text">${list.detail}</p>
+
+    <p class="card-text">金額：${list.price}<br>部屋数：${list.maxrooms}</p>
+
+  </div>
+
+  <div class="card-body">
+  <a href="/nhk/PlanUpdateServlet?nowid=${list.id}">
+<button type="button" class="btn btn-outline-primary">プラン変更</button></a>
+<a href="/nhk/PlanDeleteServlet?nowid=${list.id}">
+<button type="button" class="btn btn-outline-primary">プラン削除</button></a>
+
+</div>
+
+
+</div>
+</c:forEach>
+</div>
+
+</div></div>
+
+<div class="row">
+<div class="pull-left">
+<a href="/nhk/HotelShowServlet">
+<button type="button" class="btn btn-link">宿一覧に戻る</button></a>
+
+<a href="/nhk/adminMenu.jsp">
+<button type="button" class="btn btn-link">メニューに戻る</button></a><br>
+
+</div></div>
+
+</div>
+
+<!--
+ーーーーーーーーーーー
+
 <table border="1">
 <%-- プラン一覧表の列名 --%>
 <tr>
@@ -48,3 +102,4 @@
 
 </body>
 </html>
+-->

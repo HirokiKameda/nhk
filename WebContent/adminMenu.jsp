@@ -5,12 +5,57 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
+
+<jsp:include page="_head.jsp" />
+
+<body>
+<br><br>
+
+
+<div class="container">
+
+<div class ="row justify-content-center">
+  <div class="col-7">
+<div class="btn-group-vertical" role="group">
+
+<br>
+<h3>管理者メニュー</h3>
+<a href ="/nhk/innInsert.jsp">
+<button type="button" class="btn btn-outline-primary">新規宿登録</button>
+</a>
+
+<a href ="/nhk//HotelShowServlet?action=admin">
+<button type="button" class="btn btn-outline-primary">宿一覧</button>
+</a>
+
+<a href ="/nhk/ReserveShowServlet">
+<button type="button" class="btn btn-outline-primary">予約一覧</button>
+</a>
+
+
+<form action="/nhk/MemberShowServlet" method="post">
+<input type="hidden" name="list" value="${list}">
+<button type="submit" class="btn btn-outline-primary">会員一覧</button>
+</form>
+
+
+
+
+</div></div></div></div>
+
+
+<jsp:include page="_script.jsp" />
+
+
+</body>
+</html>
+
+
+
+<!-- bootstrap追加前 -->
+
+<!--
 <h1>管理者メニュー</h1>
 <a href ="/nhk/innInsert.jsp">新規宿登録</a>
 <a href ="/nhk//HotelShowServlet?action=admin">宿一覧</a>
@@ -20,8 +65,5 @@
 <input type="submit" value="会員一覧">
 </form>
 
+ -->
 
-
-
-</body>
-</html>
