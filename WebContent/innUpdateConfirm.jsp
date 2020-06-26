@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="_head.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>Confirm chenge data</title>
@@ -16,6 +17,7 @@
 チェックイン時間:${bean.checkin}<Br>
 チェックアウト時間:${bean.checkout}<br>
 電話:${bean.tel}<br>
+<img width="200px" src="/nhk/upload/${bean.url}">
 
 <form action="/nhk/HotelUpdateServlet" method="post">
 <input type="submit" value="登録"><br>
@@ -26,6 +28,7 @@
 <input type="hidden" name="checkin" value=${bean.checkin}>
 <input type="hidden" name="checkout" value=${bean.checkout}>
 <input type="hidden" name="tel" value=${bean.tel}>
+<input type="hidden" name="url" value=${bean.url}>
 <input type="hidden" name="nowid" value="${nowid}">
 </form>
 <a href="/nhk/innUpdate.jsp">戻る</a>

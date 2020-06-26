@@ -8,6 +8,28 @@ public class HotelBean {
 	private String checkin;
 	private String checkout;
 	private String tel;
+	private String url;
+
+	public HotelBean(int id, String name, String intro, String address, String checkin, String checkout, String tel,
+			String url) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.intro = intro;
+		this.address = address;
+		this.checkin = checkin;
+		this.checkout = checkout;
+		this.tel = tel;
+		this.url = url;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public int getId() {
 		return id;
@@ -85,6 +107,19 @@ public class HotelBean {
 		this.checkin = checkin;
 		this.checkout = checkout;
 		this.tel = tel;
+	}
+
+	public HotelBean(String name, String intro, String address, String checkin, String checkout, String tel,
+			String url) {
+		// TODO 自動生成されたコンストラクター・スタブ
+		super();
+		this.name = name;
+		this.intro = intro;
+		this.address = address;
+		this.checkin = checkin;
+		this.checkout = checkout;
+		this.tel = tel;
+		this.url = url;
 	}
 
 }

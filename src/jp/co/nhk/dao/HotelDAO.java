@@ -50,7 +50,8 @@ public class HotelDAO {
 				String checkin = rs.getString("checkin");
 				String checkout = rs.getString("checkout");
 				String tel = rs.getString("tel");
-				HotelBean bean = new HotelBean(id, name, intro, address, checkin, checkout, tel);
+				String url = rs.getString("url");
+				HotelBean bean = new HotelBean(id, name, intro, address, checkin, checkout, tel, url);
 				list.add(bean);
 			}
 			return list;
@@ -89,14 +90,15 @@ public class HotelDAO {
 		}
 	}
 
-	public void update(int id, String name, String intro, String address, String checkin, String checkout, String tel)
+	public void update(int id, String name, String intro, String address, String checkin, String checkout, String tel,
+			String url)
 			throws DAOException {
 
 		String sql = "SELECT * FROM hotel Where id=?";
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try (Connection con = getConnection();) {
-			String sql2 = "UPDATE hotel SET name=?,intro=?,address=?,checkin=?,checkout=?,tel=? WHERE id = ?";
+			String sql2 = "UPDATE hotel SET name=?,intro=?,address=?,checkin=?,checkout=?,tel=?,url=? WHERE id = ?";
 
 			st = con.prepareStatement(sql);
 			st.setInt(1, id);
@@ -122,6 +124,9 @@ public class HotelDAO {
 			if (tel == null || tel.isEmpty()) {
 				tel = rs.getString("tel");
 			}
+			if (url == null || tel.isEmpty()) {
+				url = rs.getString("tel");
+			}
 
 			st = con.prepareStatement(sql2);
 			st.setString(1, name);
@@ -130,7 +135,8 @@ public class HotelDAO {
 			st.setString(4, checkin);
 			st.setString(5, checkout);
 			st.setString(6, tel);
-			st.setInt(7, id);
+			st.setString(7, url);
+			st.setInt(8, id);
 
 			//System.out.println(st.toString());
 
@@ -170,7 +176,8 @@ public class HotelDAO {
 		}
 	}
 
-	public void insert(String name, String intro, String address, String checkin, String checkout, String tel)
+	public void insert(String name, String intro, String address, String checkin, String checkout, String tel,
+			String url)
 			throws DAOException {
 
 		PreparedStatement st1 = null;
@@ -180,7 +187,7 @@ public class HotelDAO {
 
 		try (Connection con = getConnection();) {
 			//SQL文の作成
-			String sql1 = "insert into hotel(id,name,intro,address,checkin,checkout,tel) values(?,?,?,?,?,?,?)";
+			String sql1 = "insert into hotel(id,name,intro,address,checkin,checkout,tel,url) values(?,?,?,?,?,?,?,?)";
 
 			//現在の最終行codeを持ってくる
 			String sql2 = "select * from hotel order by id desc";
@@ -204,6 +211,7 @@ public class HotelDAO {
 			st1.setString(5, checkin);
 			st1.setString(6, checkout);
 			st1.setString(7, tel);
+			st1.setString(8, url);
 
 			int rows = st1.executeUpdate();
 
