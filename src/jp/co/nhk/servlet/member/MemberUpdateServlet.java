@@ -48,6 +48,12 @@ public class MemberUpdateServlet extends HttpServlet {
 			return;
 		}
 
+		if (password.length() < 8) {
+			request.setAttribute("message", "パスワードの長さが足りません。");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+		}
+
 		HttpSession session = request.getSession(false);
 		String usertype = "nobody";
 		usertype = (String) session.getAttribute("usertype");

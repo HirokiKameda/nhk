@@ -50,6 +50,7 @@ public class HotelUpdateServlet extends HttpServlet {
 		}
 		// パラメータの解析
 		String action = request.getParameter("action");
+
 		int id = Integer.parseInt(request.getParameter("nowid"));
 
 		request.setAttribute("nowid", id);
@@ -60,6 +61,7 @@ public class HotelUpdateServlet extends HttpServlet {
 		} else if (action.equals("input")) {
 			Part part = request.getPart("fileUpload");
 			fileName = part.getSubmittedFileName();
+
 			save(part, new File(uploadDir, fileName));
 
 			request.setAttribute("uploadFilePath", "/upload/" + fileName);
@@ -80,6 +82,14 @@ public class HotelUpdateServlet extends HttpServlet {
 			String checkout = request.getParameter("checkout");
 			String tel = request.getParameter("tel");
 			fileName = request.getParameter("url");
+
+			if (name.isEmpty() && intro.isEmpty() && address.isEmpty() && checkin.isEmpty() && checkout.isEmpty()
+					&& tel.isEmpty()) {
+				request.setAttribute("message", "何か値を入力してください");
+				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+				rd.forward(request, response);
+				return;
+			}
 
 			//System.out.println(name + intro + address + checkin + checkout + tel);
 			try {
