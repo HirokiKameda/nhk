@@ -9,6 +9,15 @@
 <jsp:include page="_head.jsp" />
 
 <body>
+<br><br>
+
+
+<div class="container">
+
+<div class ="row justify-content-center">
+  <div class="col-7">
+<h3>管理者メニュー</h3><br>
+<div class="btn-group-vertical" role="group">
 
 <br>
 <h3>管理者メニュー</h3>

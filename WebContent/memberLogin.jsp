@@ -11,6 +11,15 @@
 <body>
 
 <br><br>
+
+
+<div class="container">
+
+
+
+<div class ="row justify-content-center">
+  <div class ="col-md-6 col-md-offset-1">
+
 <h3>会員様ログイン</h3>
 <div class ="row">
   <div class ="col-md-4">
