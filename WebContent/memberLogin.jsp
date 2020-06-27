@@ -22,7 +22,7 @@
 
 <h3>会員様ログイン</h3>
 <div class ="row">
-  <div class ="col-md-4">
+  <div class ="col-md-10">
 <form class="p-4" action="/nhk/MemberLoginServlet" method="post">
   <div class="form-group">
 
@@ -46,6 +46,10 @@
 
 <a href="/nhk/memberInsert.jsp">新規会員登録</a>
 <br><br><br>
+
+
+</div></div></div>
+
 
 <jsp:include page="_script.jsp" />
 
