@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <jsp:include page="_head.jsp" />
 
 <body>
