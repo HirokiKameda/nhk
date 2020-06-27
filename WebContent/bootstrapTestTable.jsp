@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <jsp:include page="_head.jsp" />
 <head>
 <meta charset="UTF-8">

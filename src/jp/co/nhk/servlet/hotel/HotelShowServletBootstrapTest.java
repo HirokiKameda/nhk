@@ -17,6 +17,7 @@ import jp.co.nhk.dao.HotelDAO;
 /**
  * Servlet implementation class HotelShowServlet
  */
+
 @WebServlet("/HotelShowServletBootstrapTest")
 public class HotelShowServletBootstrapTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
