@@ -57,10 +57,10 @@
 
 
 <a href="/nhk/HotelShowServlet">
-<button type="button" class="btn btn-outline-primary">宿一覧に戻る</button></a>
+<button type="button" class="btn btn-link">宿一覧に戻る</button></a>
 
 <a href="/nhk/memberMenu.jsp">
-<button type="button" class="btn btn-outline-primary">メニューに戻る</button></a><br>
+<button type="button" class="btn btn-link">メニューに戻る</button></a><br>
 
 
 
