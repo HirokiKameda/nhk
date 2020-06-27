@@ -38,7 +38,7 @@
 
 <div class="row">
 <div class="pull-left">
-<a href="/nhk/adminMenu.jsp">
+<a href="/nhk/memberMenu.jsp">
 <button type="submit" class="btn btn-link">メニューに戻る</button></a>
 </div></div>
 <br><br><br>
