@@ -9,12 +9,14 @@
 
 <body>
 
+
 	<br>
 	<br>
 
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-offset-1">
+
 
 				<h3>会員様メニュー</h3>
 				<br>

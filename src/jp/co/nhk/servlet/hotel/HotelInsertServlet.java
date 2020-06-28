@@ -56,9 +56,32 @@ public class HotelInsertServlet extends HttpServlet {
 		// パラメータの解析
 		String action = request.getParameter("action");
 
+		String tname = request.getParameter("name");//後から加えたエラー処理
+		String tintro = request.getParameter("intro");
+		String taddress = request.getParameter("address");
+		String tcheckin = request.getParameter("checkin");
+		String tcheckout = request.getParameter("checkout");
+		String ttel = request.getParameter("tel");
+		if (tname.isEmpty() || tintro.isEmpty() || taddress.isEmpty() || tcheckin.isEmpty() || tcheckout.isEmpty()
+				|| ttel.isEmpty()) {
+			request.setAttribute("message", "必須項目を入力してください");
+			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			rd.forward(request, response);
+			return;
+		}
+
 		if (action.equals("input")) {
 			Part part = request.getPart("fileUpload");
 			fileName = part.getSubmittedFileName();
+
+			//後から加えたエラー処理
+			if (fileName.isEmpty()) {
+				request.setAttribute("message", "画像を挿入してください");
+				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+				rd.forward(request, response);
+				return;
+			}
+
 			save(part, new File(uploadDir, fileName));
 
 			request.setAttribute("uploadFilePath", "/upload/" + fileName);

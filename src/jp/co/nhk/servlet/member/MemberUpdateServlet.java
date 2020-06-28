@@ -93,12 +93,29 @@ public class MemberUpdateServlet extends HttpServlet {
 						request.setAttribute("email", email);
 						request.setAttribute("password", password);
 
+						//						if (password != "" || password != null) {
+						//							if (password.length() < 8) {
+						//								request.setAttribute("message", "パスワードの長さが足りません。");
+						//								RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+						//								rd.forward(request, response);
+						//							}
+						//						}
+
 						RequestDispatcher rd = request.getRequestDispatcher("memberUpdateConfirm.jsp");
 						rd.forward(request, response);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				} else if ("update".equals(action)) {
+					//
+					//					if (password != "" || password != null) {
+					//						if (password.length() < 8) {
+					//							request.setAttribute("message", "パスワードの長さが足りません。");
+					//							RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+					//							rd.forward(request, response);
+					//						}
+					//					}
+
 					memdao.updateData(id, newmember.getName(), newmember.getBirthday(), newmember.getAddress(),
 							newmember.getTel(), newmember.getEmail(), newmember.getPassword());
 					RequestDispatcher rd = request.getRequestDispatcher("memberUpdateComplete.jsp");
@@ -124,6 +141,14 @@ public class MemberUpdateServlet extends HttpServlet {
 						request.setAttribute("address", address);
 						request.setAttribute("email", email);
 						request.setAttribute("password", password);
+
+						//						if (password != "" || password != null) {
+						//							if (password.length() < 8) {
+						//								request.setAttribute("message", "パスワードの長さが足りません。");
+						//								RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+						//								rd.forward(request, response);
+						//							}
+						//						}
 
 						RequestDispatcher rd = request.getRequestDispatcher("adminMemberUpdateConfirm.jsp");
 						rd.forward(request, response);
