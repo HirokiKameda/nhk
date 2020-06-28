@@ -18,6 +18,9 @@
 				<h3>会員様メニュー</h3>
 				<br>
 
+<br>
+<h3>会員様メニュー</h3>
+
 				<div class="btn-group-vertical" role="group">
 
 					<a href="/nhk/memberUpdate.jsp">
