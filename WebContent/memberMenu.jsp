@@ -19,17 +19,15 @@
 				<h3>会員様メニュー</h3>
 				<br>
 
-<br>
-<h3>会員様メニュー</h3>
 
 				<div class="btn-group-vertical" role="group">
 
-					<a href="/nhk/memberUpdate.jsp">
-						<button type="button" class="m-1 btn btn-outline-primary"
-							style="width: 180px">会員情報変更</button>
-					</a> <a href="/nhk/HotelShowServlet">
+					<a href="/nhk/HotelShowServlet">
 						<button type="button" class="m-1 btn btn-outline-primary"
 							style="width: 180px">予約</button>
+					</a> <a href="/nhk/memberUpdate.jsp">
+						<button type="button" class="m-1 btn btn-outline-primary"
+							style="width: 180px">会員情報変更</button>
 					</a>
 
 
