@@ -27,11 +27,11 @@
 
 				<form action="/nhk/ReserveInsertServlet" method="post">
 					<div class="form-group">
-						チェックイン日：<input type="time" name="checkindate" class="form-control"><br>
+						チェックイン日：<input type="date" name="checkindate" class="form-control"><br>
 					</div>
 
 					<div class="form-group">
-						チェックアウト日：<input type="time" name="checkoutdate"
+						チェックアウト日：<input type="date" name="checkoutdate"
 							class="form-control"><br>
 					</div>
 

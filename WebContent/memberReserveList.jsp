@@ -11,6 +11,7 @@
 </head>
 <%@ include file="_head.jsp"%>
 <body>
+		<c:forEach items="${list}" var="reslist">
 
 	<table border="1" class="table">
 		<thead>
@@ -33,7 +34,7 @@
 
 		</thead>
 
-		<c:forEach items="${list}" var="reslist">
+
 			<tbody>
 				<tr>
 					<td>${reslist.id}</td>
@@ -50,7 +51,7 @@
 				</tr>
 			</tbody>
 
-
+		</table>
 			<form action="/nhk/ReserveDeleteServlet" method="post">
 				<input type="hidden" name="HotelId" value="${nowid}"> <input
 					type="hidden" name="PlanId" value="${reslist.id}"> <input
@@ -58,8 +59,10 @@
 				<button type="submit" class="btn btn-primary mt-4 ml-2">削除</button>
 
 			</form>
+
+			<br><br>
 		</c:forEach>
-	</table>
+
 
 	<br>
 	<br>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>会員様ログイン画面</title>
 </head>
 
 <%@ include file="_head.jsp"%>
@@ -17,7 +17,7 @@
 
 		<div class="row justify-content-center">
 			<div class="col-md-offset-1">
-				登録内容<br>
+				新規登録内容<br>
 				<br>
 				<form action="/nhk/MemberInsertServlet" method="post">
 					<div class="form-group">
@@ -70,7 +70,7 @@
 
 
 				<br>
-				<br> <a href="/nhk/memberMenu.jsp">メニューに戻る</a> <br>
+				<br> <a href="/nhk/memberLogin.jsp">ログイン画面に戻る</a> <br>
 				<br>
 				<br>
 			</div>
