@@ -10,20 +10,28 @@
 
 <body>
 
-<br>
+<br><br>
+
+
+<div class="container">
+
+
+<div class ="row justify-content-center">
+  <div class ="col-md-offset-1">
+
 <h3>管理者ログイン</h3>
 <div class ="row">
-  <div class ="col-md-4">
+  <div class ="col-md-10">
 <form class="p-4" action="/nhk/MemberLoginServlet" method="post">
   <div class="form-group">
 
 
     <label for="exampleDropdownFormUserName">User name</label>
-    <input class="form-control" type="text" name="username" id="exampleDropdownFormUserName" placeholder="email@example.com">
+    <input class="form-control" type="text" name="username" id="exampleDropdownFormUserName" placeholder="User name">
   </div>
   <div class="form-group">
     <label for="exampleDropdownFormPassword2">Password</label>
-    <input class="form-control" type="text" name="password" id="exampleDropdownFormPassword" placeholder="Password">
+    <input class="form-control" type="password" name="password" id="exampleDropdownFormPassword" placeholder="Password">
   </div>
   <input type="hidden" name="usertype" value="admin">
   <button type="submit" value="login" class="btn btn-primary">Login</button>
@@ -34,8 +42,7 @@
 ユーザ名もしくはパスワードが間違っています。
 </c:if>
 
-
-
+</div></div></div>
 
 
 

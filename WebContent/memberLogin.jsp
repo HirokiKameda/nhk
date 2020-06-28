@@ -19,7 +19,7 @@
 
 
 <div class ="row justify-content-center">
-  <div class ="col-md-6 col-md-offset-1">
+  <div class ="col-md-offset-1">
 
 <h3>会員様ログイン</h3>
 <div class ="row">
@@ -33,7 +33,7 @@
   </div>
   <div class="form-group">
     <label for="exampleDropdownFormPassword2">Password</label>
-    <input class="form-control" type="text" name="password" id="exampleDropdownFormPassword" placeholder="Password">
+    <input class="form-control" type="password" name="password" id="exampleDropdownFormPassword" placeholder="Password">
   </div>
   <input type="hidden" name="usertype" value="member">
   <button type="submit" value="login" class="btn btn-primary">Login</button>
@@ -43,7 +43,7 @@
 <c:if test="${isLogin eq 1}">
 メールアドレスもしくはパスワードが間違っています。
 </c:if>
-<br>
+<br><br>
 
 
 
