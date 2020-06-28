@@ -84,7 +84,7 @@ public class HotelUpdateServlet extends HttpServlet {
 			fileName = request.getParameter("url");
 
 			if (name.isEmpty() && intro.isEmpty() && address.isEmpty() && checkin.isEmpty() && checkout.isEmpty()
-					&& tel.isEmpty()) {
+					&& tel.isEmpty() && fileName.isEmpty()) {
 				request.setAttribute("message", "何か値を入力してください");
 				RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
 				rd.forward(request, response);
