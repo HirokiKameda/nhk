@@ -11,7 +11,8 @@
 
 <body>
 
-
+	<br>
+	<br>
 
 	<div class="container">
 		<div class="row justify-content-center">
@@ -24,7 +25,7 @@
 
 
 					<c:forEach items="${plans}" var="list">
-						<div class="card" style="{width: '16rem'; height: '20rem'}">
+						<div class="card" style="width: '16rem'; height: '20rem'">
 
 
 
@@ -44,7 +45,7 @@
 								<form action="/nhk/ReserveInsertServlet" method="post">
 									<input type="hidden" name="HotelId" value="${nowid}"> <input
 										type="hidden" name="PlanId" value="${list.id}">
-									<button type="submit" class="btn btn-outline-secondary">予約</button>
+									<button type="submit" class="btn btn-outline-primary">予約</button>
 								</form>
 
 
@@ -61,7 +62,7 @@
 			</div>
 		</div>
 
-
+		<br> <br>
 		<div class="row">
 			<div class="pull-left">
 				<a href="/nhk/HotelShowServlet">

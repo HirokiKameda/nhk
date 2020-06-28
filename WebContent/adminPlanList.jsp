@@ -10,9 +10,11 @@
 
 <jsp:include page="_head.jsp" />
 
+
 <body>
 
-
+	<br>
+	<br>
 
 
 	<div class="container">
@@ -24,7 +26,7 @@
 				<div class="card-columns">
 
 					<c:forEach items="${plans}" var="list">
-						<div class="card m-4" style="{width: '16rem'; height: '20rem'}">
+						<div class="card m-4" style="width: '16rem'; height: '20rem'">
 
 
 
@@ -57,7 +59,7 @@
 
 			</div>
 		</div>
-
+		<br> <br>
 		<div class="row">
 			<div class="pull-left">
 				<a href="/nhk/HotelShowServlet">
@@ -71,7 +73,7 @@
 
 	</div>
 
-<jsp:include page="_script.jsp" />
+	<jsp:include page="_script.jsp" />
 
 
 </body>
@@ -79,7 +81,7 @@
 
 
 
-	<!--
+<!--
 ーーーーーーーーーーー
 
 <table border="1">
