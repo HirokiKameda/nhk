@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -7,15 +7,27 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+<%@ include file="_head.jsp"%>
 <body>
 
-プランの変更を行いました。<br>
+	<br>
+	<br>
+	<div class="container">
 
-<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
+		<div class="row justify-content-center">
+			<div class="col-md-offset-1">
+
+				プランの変更を行いました。<br> <br> <br> <a
+					href="/nhk/adminMenu.jsp">メニューに戻る</a> <br> <br> <br>
+			</div>
+		</div>
+	</div>
+
+
+	<%@ include file="_script.jsp"%>
+
+
 
 </body>
 </html>

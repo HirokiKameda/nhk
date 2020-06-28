@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -9,14 +9,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
+
+<%@ include file="_head.jsp"%>
 <body>
 
+	<br>
+	<br>
+	<div class="container">
 
-予約を行いました。<br>
-宿泊の際は身分証明書をお持ちください。<br>
+		<div class="row justify-content-center">
+			<div class="col-md-offset-1">
+
+				予約を行いました。<br> 宿泊の際は身分証明書をお持ちください。<br> <br>
+				<a href="/nhk/memberMenu.jsp">メニューに戻る</a> <br> <br> <br>
+			</div>
+		</div>
+	</div>
 
 
-<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
+	<%@ include file="_script.jsp"%>
+
+
+
+
+
+
+
+
 
 </body>
 </html>
