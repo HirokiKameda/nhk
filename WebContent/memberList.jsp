@@ -59,7 +59,7 @@
 
 
 
-<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
+<a href="/nhk/adminMenu.jsp">メニューに戻る</a>
 
 
 <jsp:include page="_script.jsp" />

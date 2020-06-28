@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 
 
@@ -10,22 +10,55 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
+<%@ include file="_head.jsp"%>
+
 <body>
 
+	<br>
+	<br>
+	<div class="container">
 
-予約情報を入力してください。<br>
-<form action="/nhk/ReserveInsertServlet" method="post">
-チェックイン日：<input type = "time" name = "checkindate" ><br>
-チェックアウト日：<input type = "time" name = "checkoutdate" ><br>
-人数：<input type = "number" name = "people" ><br>
-<input type="hidden" name="action" value="input">
-<input type="hidden" name="PlanId" value="${PlanId}">
-<input type="hidden" name="HotelId" value="${HotelId}">
-<input type=submit value="確認画面へ"><br>
-</form>
+		<div class="row justify-content-center">
+			<div class="col-md-offset-1">
+
+				予約情報を入力してください。<br><br>
+
+				<form action="/nhk/ReserveInsertServlet" method="post">
+					<div class="form-group">
+						チェックイン日：<input type="time" name="checkindate" class="form-control"><br>
+					</div>
+
+					<div class="form-group">
+						チェックアウト日：<input type="time" name="checkoutdate"
+							class="form-control"><br>
+					</div>
+
+					<div class="form-group">
+						人数：<input type="number" name="people" class="form-control"><br>
+					</div>
+
+					<input type="hidden" name="action" value="input"> <input
+						type="hidden" name="PlanId" value="${PlanId}"> <input
+						type="hidden" name="HotelId" value="${HotelId}">
+					<button type="submit" class="btn btn-primary mt-4 ml-2">確認画面へ</button>
+				</form>
 
 
-<a href="/nhk/memberMenu.jsp">メニューに戻る</a>
+
+
+
+				<br>
+				<br> <a href="/nhk/memberMenu.jsp">メニューに戻る</a> <br>
+				<br>
+				<br>
+			</div>
+		</div>
+	</div>
+
+
+	<%@ include file="_script.jsp"%>
 
 
 

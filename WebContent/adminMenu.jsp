@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri ="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE html>
@@ -9,61 +9,46 @@
 
 <jsp:include page="_head.jsp" />
 
+
 <body>
-<br><br>
-
-
-<div class="container">
-
-<div class ="row justify-content-center">
-  <div class="col-7">
-<div class="btn-group-vertical" role="group">
-
-<br>
-<h3>管理者メニュー</h3>
-<a href ="/nhk/innInsert.jsp">
-<button type="button" class="btn btn-outline-primary">新規宿登録</button>
-</a>
-
-<a href ="/nhk//HotelShowServlet?action=admin">
-<button type="button" class="btn btn-outline-primary">宿一覧</button>
-</a>
-
-<a href ="/nhk/ReserveShowServlet">
-<button type="button" class="btn btn-outline-primary">予約一覧</button>
-</a>
-
-
-<form action="/nhk/MemberShowServlet" method="post">
-<input type="hidden" name="list" value="${list}">
-<button type="submit" class="btn btn-outline-primary">会員一覧</button>
-</form>
+	<br>
+	<br>
 
 
 
 
-</div></div></div></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-offset-1">
+				<h3>管理者メニュー</h3>
+				<br>
+
+					<div class="btn-group-vertical" role="group">
+						<a href="/nhk/innInsert.jsp">
+							<button type="button" class="m-1 btn btn-outline-primary"
+								style="width: 180px">新規宿登録</button>
+						</a> <a href="/nhk//HotelShowServlet?action=admin">
+							<button type="button" class="m-1 btn btn-outline-primary"
+								style="width: 180px">宿一覧</button>
+						</a> <a href="/nhk/ReserveShowServlet">
+							<button type="button" class="m-1 btn btn-outline-primary"
+								style="width: 180px">予約一覧</button>
+						</a>
+						<form action="/nhk/MemberShowServlet" method="post">
+							<input type="hidden" name="list" value="${list}">
+							<button type="submit" class="m-1 btn btn-outline-primary"
+								style="width: 180px">会員一覧</button>
+						</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-<jsp:include page="_script.jsp" />
 
-
+	<jsp:include page="_script.jsp" />
 </body>
 </html>
 
-
-
-<!-- bootstrap追加前 -->
-
-<!--
-<h1>管理者メニュー</h1>
-<a href ="/nhk/innInsert.jsp">新規宿登録</a>
-<a href ="/nhk//HotelShowServlet?action=admin">宿一覧</a>
-<a href ="/nhk/ReserveShowServlet">予約一覧</a>
-<form action="/nhk/MemberShowServlet" method="post">
-<input type="hidden" name="list" value="${list}">
-<input type="submit" value="会員一覧">
-</form>
-
- -->
 

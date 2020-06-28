@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -7,63 +7,79 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+
+<jsp:include page="_head.jsp" />
+
+
 <body>
 
+	<br>
+	<br>
+
+
+	<div class="container">
+		<div class="row justify-content-center">
+
+			<div class="row">
+
+
+				<div class="card-columns">
+
+					<c:forEach items="${plans}" var="list">
+						<div class="card m-4" style="width: '16rem'; height: '20rem'">
 
 
 
-<div class="container">
-<div class="row">
-        <div class="center-block">
+							<div class="card-header">
+								<h5>${list.name}</h5>
+							</div>
+							<div class="card-body">
+								<p class="card-text">${list.detail}</p>
+
+								<p class="card-text">
+									金額：${list.price}<br>部屋数：${list.maxrooms}
+								</p>
+
+							</div>
+
+							<div class="card-body">
+								<a href="/nhk/PlanUpdateServlet?nowid=${list.id}">
+									<button type="button" class="btn btn-outline-primary">プラン変更</button>
+								</a> <a href="/nhk/PlanDeleteServlet?nowid=${list.id}">
+									<button type="button" class="btn btn-outline-primary">プラン削除</button>
+								</a>
+
+							</div>
 
 
-<div class="card-columns">
-
-<c:forEach items="${plans}" var="list">
-<div class="card m-4" style="width: 18rem;">
-
+						</div>
+					</c:forEach>
+				</div>
 
 
-<div class="card-header">
-<h5>${list.name}</h5>
-</div>
-  <div class="card-body">
-      <p class="card-text">${list.detail}</p>
+			</div>
+		</div>
+		<br> <br>
+		<div class="row">
+			<div class="pull-left">
+				<a href="/nhk/HotelShowServlet">
+					<button type="button" class="btn btn-link">宿一覧に戻る</button>
+				</a> <a href="/nhk/adminMenu.jsp">
+					<button type="button" class="btn btn-link">メニューに戻る</button>
+				</a><br>
 
-    <p class="card-text">金額：${list.price}<br>部屋数：${list.maxrooms}</p>
+			</div>
+		</div>
 
-  </div>
+	</div>
 
-  <div class="card-body">
-  <a href="/nhk/PlanUpdateServlet?nowid=${list.id}">
-<button type="button" class="btn btn-outline-primary">プラン変更</button></a>
-<a href="/nhk/PlanDeleteServlet?nowid=${list.id}">
-<button type="button" class="btn btn-outline-primary">プラン削除</button></a>
-
-</div>
+	<jsp:include page="_script.jsp" />
 
 
-</div>
-</c:forEach>
-</div>
+</body>
+</html>
 
-</div></div>
 
-<div class="row">
-<div class="pull-left">
-<a href="/nhk/HotelShowServlet">
-<button type="button" class="btn btn-link">宿一覧に戻る</button></a>
-
-<a href="/nhk/adminMenu.jsp">
-<button type="button" class="btn btn-link">メニューに戻る</button></a><br>
-
-</div></div>
-
-</div>
 
 <!--
 ーーーーーーーーーーー

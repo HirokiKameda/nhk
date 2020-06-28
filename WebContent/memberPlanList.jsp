@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -11,61 +11,71 @@
 
 <body>
 
+	<br>
+	<br>
 
+	<div class="container">
+		<div class="row justify-content-center">
 
-<div class="container">
-<div class="row">
-        <div class="center-block">
-
-
-
-<div class="card-columns">
-
-
-<c:forEach items="${plans}" var="list">
-<div class="card" style="width: 18rem;">
+			<div class="row">
 
 
 
-<div class="card-header">
-<h5>${list.name}</h5>
-</div>
-  <div class="card-body">
-      <p class="card-text">${list.detail}</p>
-
-    <p class="card-text">金額：${list.price}<br>部屋数：${list.maxrooms}</p>
-
-  </div>
-
-  <div class="card-body">
-  <form action="/nhk/ReserveInsertServlet" method="post">
-<input type="hidden" name="HotelId" value="${nowid}">
-<input type="hidden" name="PlanId" value="${list.id}">
-<button type="submit" class="btn btn-outline-secondary">予約</button>
-</form>
+				<div class="card-columns">
 
 
-</div>
+					<c:forEach items="${plans}" var="list">
+						<div class="card" style="width: '16rem'; height: '20rem'">
 
 
 
+							<div class="card-header">
+								<h5>${list.name}</h5>
+							</div>
+							<div class="card-body">
+								<p class="card-text">${list.detail}</p>
+
+								<p class="card-text">
+									金額：${list.price}<br>部屋数：${list.maxrooms}
+								</p>
+
+							</div>
+
+							<div class="card-body">
+								<form action="/nhk/ReserveInsertServlet" method="post">
+									<input type="hidden" name="HotelId" value="${nowid}"> <input
+										type="hidden" name="PlanId" value="${list.id}">
+									<button type="submit" class="btn btn-outline-primary">予約</button>
+								</form>
 
 
-</div>
-</c:forEach>
-</div>
-
-
-<a href="/nhk/HotelShowServlet">
-<button type="button" class="btn btn-link">宿一覧に戻る</button></a>
-
-<a href="/nhk/memberMenu.jsp">
-<button type="button" class="btn btn-link">メニューに戻る</button></a><br>
+							</div>
 
 
 
 
-<jsp:include page="_script.jsp" />
+
+						</div>
+					</c:forEach>
+				</div>
+
+			</div>
+		</div>
+
+		<br> <br>
+		<div class="row">
+			<div class="pull-left">
+				<a href="/nhk/HotelShowServlet">
+					<button type="button" class="btn btn-link">宿一覧に戻る</button>
+				</a> <a href="/nhk/memberMenu.jsp">
+					<button type="button" class="btn btn-link">メニューに戻る</button>
+				</a><br>
+
+			</div>
+		</div>
+	</div>
+
+	<jsp:include page="_script.jsp" />
 </body>
 </html>
 

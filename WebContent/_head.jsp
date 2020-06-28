@@ -13,4 +13,11 @@
 
 
 <title>Insert title here</title>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<a class="navbar-brand"><font color="#8EB8FF"><i><em>NHK Travel</em></i></font><br/></a>
+</nav>
+
+
 </head>
