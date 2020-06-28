@@ -6,6 +6,8 @@
 <html>
 <jsp:include page="_head.jsp" />
 <body>
+
+
 <br><br>
 	<div class="container">
 <div class="row justify-content-center">
